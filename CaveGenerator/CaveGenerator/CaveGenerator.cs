@@ -7,19 +7,18 @@ using System.IO;
 
 namespace CaveGenerator
 {
-    /// <summary>
-    /// False = Wall
-    /// True = Open
-    /// </summary>
+
     public class CaveGenerator
     {
-        private int _width = 50;
-        private int _height = 50;
+        const bool WALL = false;
+        const bool HOLE = true;
+
+        private int _width = 100;
+        private int _height = 100;
 
         private int _birthLimit;
         private int _deathLimit;
-        private double _initialChance;
-        private int _stepsCount;
+        private int _iterationCount;
         private int _activeChance;
 
         Boolean[,] _celullarMap;
@@ -31,20 +30,19 @@ namespace CaveGenerator
         {
             this._birthLimit = 4;
             this._deathLimit = 3;
-            this._initialChance = 0.4f;
-            this._stepsCount = 2;
+            this._iterationCount = 5;
             this._activeChance = 45;
 
             this._celullarMap = new Boolean[_width, _height];
 
-            MakeBlankMap();
+            MakeBlankGrid();
             InitializeCave();
         }
 
         /// <summary>
         /// Create a blank map, where all fields are walls
         /// </summary>
-        public void MakeBlankMap()
+        public void MakeBlankGrid()
         {
             Boolean[,] map = new Boolean[_width, _height];
 
@@ -53,7 +51,7 @@ namespace CaveGenerator
             for (int x = 0; x < _width; x++)
             {
                 for (int y = 0; y < _height; y++) {
-                    map[x, y] = false;
+                    map[x, y] = WALL;
                 }
             }
             this._celullarMap = map;
@@ -72,7 +70,7 @@ namespace CaveGenerator
             for ( int x = 0; x < _width; x++ ) {
                 for ( int y = 0; y < _height; y++ ) {
                     if (random.Next(0,100) < this._activeChance || IsBorderCell(x,y)) {
-                        map[x,y] = true;
+                        map[x,y] = HOLE;
                     }
                 }
             }
@@ -85,17 +83,17 @@ namespace CaveGenerator
         /// <param name="x">X coordinate</param>
         /// <param name="y">Y coordinate</param>
         /// <returns>Returns true if is a wall</returns>
-        bool IsWall(int x, int y)
+        bool IsInactive(int x, int y)
         {
             if (IsOutOfBounds(x, y)) {
                 return true;
             }
 
-            if (_celullarMap[x, y] == true) {
+            if (_celullarMap[x, y] == HOLE) {
                 return true;
             }
 
-            if (_celullarMap[x, y] == false) {
+            if (_celullarMap[x, y] == WALL) {
                 return false;
             }
             return false;
@@ -142,6 +140,7 @@ namespace CaveGenerator
 
         /// <summary>
         /// Check number of active neighbor
+        /// Out of bound is considered active neighbor
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -153,12 +152,13 @@ namespace CaveGenerator
             {
                 for (int y = -1; y <= 1; ++y)
                 {
-                    // not himself
-                    if (x != 0 && y != 0) {
-                        if (!IsOutOfBounds(dx + x, dy + y)) {
-                            if (IsActive(dx + x, dy + y)) {
-                                result++;
-                            }
+                    if (x != 0 && y != 0)
+                    {
+                        if (IsOutOfBounds(dx + x, dy + y)) {
+                            result++;
+                        }
+                        else if (IsActive(dx + x, dy + y)) {
+                            result++;
                         }
                     }
                 }
@@ -194,8 +194,45 @@ namespace CaveGenerator
             }
         }
 
-        void DoSimulation() {
+        /// <summary>
+        /// Do a simulation
+        /// </summary>
+        public void DoSimulation() {
 
+            for (int i = 0; i < _iterationCount; i++)
+            {
+                Boolean[,] copyMap = this._celullarMap;
+
+                for (int x = 0; x < _width; x++)
+                {
+                    for (int y = 0; y < _height; y++)
+                    {
+                        if (!IsBorderCell(x, y))
+                        {
+                            int activeNeighbor = getSumOfActiveNeighbor(x, y);
+
+                            // If few neighbours, kill cell.
+                            if (copyMap[x, y]) {
+                                if (activeNeighbor < _deathLimit) {
+                                    copyMap[x, y] = WALL;
+                                }
+                                else { 
+                                    copyMap[x, y] = HOLE;
+                                }
+                            } // Else, become active if right number
+                            else {
+                                if (activeNeighbor > _birthLimit) {
+                                    copyMap[x, y] = HOLE;
+                                }
+                                else {
+                                    copyMap[x, y] = WALL;
+                                }
+                            }
+                        }
+                    }
+                }
+                this._celullarMap = copyMap;
+            }
         }
     }
 }

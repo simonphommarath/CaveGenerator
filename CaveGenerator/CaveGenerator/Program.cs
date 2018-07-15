@@ -20,6 +20,7 @@ namespace CaveGenerator
 
             CaveGenerator cave = new CaveGenerator();
             cave.InitializeCave();
+            cave.DoSimulation();
             cave.PrintGrid();
 
         }
