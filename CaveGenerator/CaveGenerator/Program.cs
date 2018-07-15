@@ -19,8 +19,8 @@ namespace CaveGenerator
             Application.Run(new Form());
 
             CaveGenerator cave = new CaveGenerator();
-            cave.initializeCave();
-            cave.printGrid();
+            cave.InitializeCave();
+            cave.PrintGrid();
 
         }
     }
