@@ -135,6 +135,37 @@ namespace CaveGenerator
             return false;
         }
 
+        bool IsActive(int x, int y)
+        {
+            return !_celullarMap[x, y];
+        }
+
+        /// <summary>
+        /// Check number of active neighbor
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        int getSumOfActiveNeighbor(int dx, int dy)
+        {
+            int result = 0;
+
+            for (int x = -1; x <= 1; ++x)
+            {
+                for (int y = -1; y <= 1; ++y)
+                {
+                    // not himself
+                    if (x != 0 && y != 0) {
+                        if (!IsOutOfBounds(dx + x, dy + y)) {
+                            if (IsActive(dx + x, dy + y)) {
+                                result++;
+                            }
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
         /// <summary>
         /// Print grid in text file (temp)
         /// </summary>
@@ -154,6 +185,7 @@ namespace CaveGenerator
                     for (int x = 0; x < _width; x++)
                     {
                         for (int y = 0; y < _height; y++) {
+                            // Console.WriteLine("(" + x + ","+ y +  "): " + getSumOfActiveNeighbor(x, y));
                             sw.Write(this._celullarMap[x, y] ? "#":" ");
                         }
                         sw.WriteLine();
