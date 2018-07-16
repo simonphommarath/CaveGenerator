@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form));
             this.Canvas = new System.Windows.Forms.Panel();
             this.iterationButton = new System.Windows.Forms.Button();
             this.birthRateBox = new System.Windows.Forms.TextBox();
@@ -161,8 +162,9 @@
             this.Controls.Add(this.birthRateBox);
             this.Controls.Add(this.iterationButton);
             this.Controls.Add(this.Canvas);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form";
-            this.Text = "Form";
+            this.Text = "Cave Generator";
             this.ResumeLayout(false);
             this.PerformLayout();
 
