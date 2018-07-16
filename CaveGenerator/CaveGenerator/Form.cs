@@ -32,6 +32,8 @@ namespace CaveGenerator
             Graphics g = e.Graphics;
             int cellSize = 10;
             Pen p = new Pen(Color.Black);
+            SolidBrush greenBrush = new SolidBrush(Color.Green);
+            Rectangle activeCell;
 
             for (int y = 0; y < cave.GetWidth() + 1; ++y)
             {
@@ -41,6 +43,20 @@ namespace CaveGenerator
             for (int x = 0; x < cave.GetHeigth() + 1; ++x)
             {
                 g.DrawLine(p, x * cellSize, 0, x * cellSize, cave.GetHeigth() * cellSize);
+            }
+
+
+            for (int x = 0; x < cave.GetWidth(); x++)
+            {
+                for (int y = 0; y < cave.GetHeigth(); y++)
+                {
+                    if (caveCell[x, y])
+                    {
+                        activeCell = new Rectangle(x * 10, y * 10, 10, 10);
+                        e.Graphics.FillRectangle(greenBrush, activeCell);
+                        g.DrawRectangle(p, activeCell);
+                    }
+                }
             }
         }
     }
