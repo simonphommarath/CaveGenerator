@@ -13,21 +13,24 @@ namespace CaveGenerator
         const bool WALL = false;
         const bool HOLE = true;
 
-        private int _width = 75;
-        private int _height = 75;
+        public int _width { get; private set; }
+        public int _height { get; private set; }
 
-        private int _birthLimit;
-        private int _deathLimit;
-        private int _iterationCount;
-        private int _activeChance;
+        public int _birthLimit { get; set; }
+        public int _deathLimit { get; set; }
+        public int _iterationCount { get; set; }
+        public int _activeChance { get; set; }
 
-        Boolean[,] _celullarMap;
+        public Boolean[,] _celullarMap { get; private set; }
 
         /// <summary>
         /// Constructor to CaveGenerator
         /// </summary>
         public CaveGenerator()
         {
+            this._width = 75;
+            this._height = 75;
+
             this._birthLimit = 4;
             this._deathLimit = 2;
             this._iterationCount = 5;
@@ -37,26 +40,6 @@ namespace CaveGenerator
 
             MakeBlankGrid();
             InitializeCave();
-        }
-
-        public Boolean[,] GetCellularMap()
-        {
-            return this._celullarMap;
-        }
-
-        public int GetWidth()
-        {
-            return this._width;
-        }
-
-        public int GetHeigth()
-        {
-            return this._height;
-        }
-
-        public int GetIterationCount()
-        {
-            return this._iterationCount;
         }
 
         /// <summary>

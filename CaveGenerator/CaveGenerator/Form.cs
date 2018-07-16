@@ -23,7 +23,7 @@ namespace CaveGenerator
 
         private void Canvas_Paint(object sender, PaintEventArgs e)
         {
-            Boolean[,] caveCell = cave.GetCellularMap();
+            Boolean[,] caveCell = cave._celullarMap;
 
             Graphics g = e.Graphics;
             int cellSize = 10;
@@ -31,35 +31,30 @@ namespace CaveGenerator
             SolidBrush greenBrush = new SolidBrush(Color.Green);
             Rectangle activeCell;
 
-            for (int y = 0; y < cave.GetWidth() + 1; ++y)
-            {
-                g.DrawLine(p, 0, y * cellSize, cave.GetWidth() * cellSize, y * cellSize);
+            for (int y = 0; y < cave._width + 1; ++y) {
+                g.DrawLine(p, 0, y * cellSize, cave._width * cellSize, y * cellSize);
             }
 
-            for (int x = 0; x < cave.GetHeigth() + 1; ++x)
-            {
-                g.DrawLine(p, x * cellSize, 0, x * cellSize, cave.GetHeigth() * cellSize);
+            for (int x = 0; x < cave._height + 1; ++x) {
+                g.DrawLine(p, x * cellSize, 0, x * cellSize, cave._height * cellSize);
             }
 
-
-            for (int x = 0; x < cave.GetWidth(); x++)
+            for (int x = 0; x < cave._width; x++)
             {
-                for (int y = 0; y < cave.GetHeigth(); y++)
+                for (int y = 0; y < cave._height; y++)
                 {
-                    if (!caveCell[x, y])
-                    {
+                    if (!caveCell[x, y]) {
                         activeCell = new Rectangle(x * cellSize, y * cellSize, 10, 10);
                         e.Graphics.FillRectangle(greenBrush, activeCell);
                         g.DrawRectangle(p, activeCell);
                     }
                 }
             }
-            //cave.PrintActiveNeighbor();
         }
 
         private void iterationButton_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < cave.GetIterationCount(); i++) {
+            for (int i = 0; i < cave._iterationCount; i++) {
                 cave.DoSimulation2();
             }
             this.Canvas.Invalidate();
