@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CaveGenerator.Algorithm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,9 +14,11 @@ namespace CaveGenerator
     public partial class Form : System.Windows.Forms.Form
     {
         CaveGenerator cave;
+        IProceduralGenStragery algoStrategy; 
 
         public Form()
         {
+            this.SetProceduralGenStrategy(new SimpleCaveStrategy());
             cave = new CaveGenerator();
             cave.InitializeCave();
             InitializeComponent();
@@ -52,11 +55,15 @@ namespace CaveGenerator
             }
         }
 
+        void SetProceduralGenStrategy(IProceduralGenStragery strategy)
+        {
+            algoStrategy = strategy;
+        }
+
         private void iterationButton_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < cave._iterationCount; i++) {
-                cave.SimpleCaveSimulation();
-                //cave.GameOfLifeSimulation();
+                algoStrategy.doSimulation(cave);
             }
             this.Canvas.Invalidate();
         }
@@ -69,8 +76,7 @@ namespace CaveGenerator
 
         private void singleIterationButton_Click(object sender, EventArgs e)
         {
-            cave.SimpleCaveSimulation();
-            //cave.GameOfLifeSimulation();
+            algoStrategy.doSimulation(cave);
             this.Canvas.Invalidate();
         }
     }

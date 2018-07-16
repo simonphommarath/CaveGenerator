@@ -10,8 +10,6 @@ namespace CaveGenerator
 
     public class CaveGenerator
     {
-        const bool WALL = false;
-        const bool HOLE = true;
 
         public int _width { get; private set; }
         public int _height { get; private set; }
@@ -21,7 +19,7 @@ namespace CaveGenerator
         public int _iterationCount { get; set; }
         public int _activeChance { get; set; }
 
-        public Boolean[,] _celullarMap { get; private set; }
+        public Boolean[,] _celullarMap { get; set; }
 
         /// <summary>
         /// Constructor to CaveGenerator
@@ -54,7 +52,7 @@ namespace CaveGenerator
             for (int x = 0; x < _width; x++)
             {
                 for (int y = 0; y < _height; y++) {
-                    map[x, y] = WALL;
+                    map[x, y] = Utility.WALL;
                 }
             }
             this._celullarMap = map;
@@ -74,7 +72,7 @@ namespace CaveGenerator
                 for ( int y = 0; y < _height; y++ ) {
                     if (!IsBorderCell(x, y)) {
                         if (random.Next(0, 100) < this._activeChance) {
-                            map[x, y] = HOLE;
+                            map[x, y] = Utility.HOLE;
                         }
                     }
                 }
@@ -88,17 +86,17 @@ namespace CaveGenerator
         /// <param name="x">X coordinate</param>
         /// <param name="y">Y coordinate</param>
         /// <returns>Returns true if is a wall</returns>
-        bool IsActive(int x, int y)
+        public bool IsActive(int x, int y)
         {
             if (IsOutOfBounds(x, y)) {
                 return false;
             }
 
-            if (_celullarMap[x, y] == HOLE) {
+            if (_celullarMap[x, y] == Utility.HOLE) {
                 return true;
             }
 
-            if (_celullarMap[x, y] == WALL) {
+            if (_celullarMap[x, y] == Utility.WALL) {
                 return false;
             }
             return false;
@@ -110,7 +108,7 @@ namespace CaveGenerator
         /// <param name="x">X coordinate</param>
         /// <param name="y">Y coordinate</param>
         /// <returns>Returns true if coordinate is out of bound</returns>
-        bool IsOutOfBounds(int x, int y)
+        public bool IsOutOfBounds(int x, int y)
         {
             if (x < 0 || y < 0) {
                 return true;
@@ -127,7 +125,7 @@ namespace CaveGenerator
         /// <param name="x">X coordinate</param>
         /// <param name="y">Y coordinate</param>
         /// <returns>Returns true if coordinate is a border cell</returns>
-        bool IsBorderCell(int x, int y)
+        public bool IsBorderCell(int x, int y)
         {
             if (x == 0 || y == 0) {
                 return true;
@@ -147,7 +145,7 @@ namespace CaveGenerator
             {
                 for (int y = 0; y < _height; y++)
                 {
-                    Console.WriteLine("(" + x + "," + y + "): " + getSumOfActiveNeighbor(x, y));
+                    Console.WriteLine("(" + x + "," + y + "): " + GetSumOfActiveNeighbor(x, y));
                 }
             }
         }
@@ -158,7 +156,7 @@ namespace CaveGenerator
         /// </summary>
         /// <param name="x">X coordinate</param>
         /// <param name="y">Y coordinate</param>
-        int getSumOfActiveNeighbor(int x, int y)
+        public int GetSumOfActiveNeighbor(int x, int y)
         {
             int result = 0;
 
@@ -205,82 +203,6 @@ namespace CaveGenerator
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// Do the original simulation
-        /// </summary>
-        public void GameOfLifeSimulation()
-        {
-            Boolean[,] copyMap = this._celullarMap;
-
-            for (int x = 0; x < _width; x++)
-            {
-                for (int y = 0; y < _height; y++)
-                {
-                    if (!IsBorderCell(x, y))
-                    {
-                        int activeNeighbor = getSumOfActiveNeighbor(x, y);
-
-                        if (copyMap[x, y]) {
-                            if (activeNeighbor < 2) {
-                                // Underpopulation
-                                copyMap[x, y] = WALL;
-                            }
-                            else if (activeNeighbor == 2 || activeNeighbor == 3)
-                            {
-                                // Reproduction
-                                copyMap[x, y] = HOLE;
-                            }
-                            else {
-                                // Overpopulation
-                                copyMap[x, y] = WALL;
-                            }
-                        }
-                        else {
-                            if (activeNeighbor == 3) {
-                                // Reproduction
-                                copyMap[x, y] = HOLE;
-                            }
-                        }
-                    }
-                }
-            }
-            this._celullarMap = copyMap;
-        }
-
-        /// <summary>
-        /// Do a custom simulation
-        /// </summary>
-        public void SimpleCaveSimulation()
-        {
-            Boolean[,] copyMap = this._celullarMap;
-
-            for (int x = 0; x < _width; x++)
-            {
-                for (int y = 0; y < _height; y++)
-                {
-                    if (!IsBorderCell(x, y))
-                    {
-                        int activeNeighbor = getSumOfActiveNeighbor(x, y);
-
-                        if (IsActive(x, y)) {
-                            if (activeNeighbor < 3) {
-                                // Fill the holes
-                                copyMap[x, y] = WALL;
-                            }
-                        }
-                        else {
-                            if (activeNeighbor > 4) {
-                                // Destroy small walls
-                                copyMap[x, y] = HOLE;
-                            }
-                        }
-
-                    }
-                }
-            }
-            this._celullarMap = copyMap;
         }
     }
 }
