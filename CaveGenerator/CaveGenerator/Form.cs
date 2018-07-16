@@ -21,6 +21,16 @@ namespace Cave
             this.SetProceduralGenStrategy(new SimpleCaveStrategy());
             cave = algoStrategy.InitializeCave(new Cave());
             InitializeComponent();
+
+            var dataSource = new List<CaveGenerator.Model.Algorithm>();
+
+            dataSource.Add( new CaveGenerator.Model.Algorithm() { Name = "Simple Cave", Tag = "sc" });
+            dataSource.Add( new CaveGenerator.Model.Algorithm() { Name = "Game of life", Tag = "gol" });
+
+            this.algorithmComboBox.DataSource = dataSource;
+            this.algorithmComboBox.DisplayMember = "Name";
+            this.algorithmComboBox.ValueMember = "Tag";
+            this.algorithmComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void Canvas_Paint(object sender, PaintEventArgs e)
@@ -77,6 +87,21 @@ namespace Cave
         private void singleIterationButton_Click(object sender, EventArgs e)
         {
             cave = algoStrategy.doSimulation(cave);
+            this.Canvas.Invalidate();
+        }
+
+        private void algorithmComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (this.algorithmComboBox.SelectedValue)
+            {
+                case "sc":
+                    this.SetProceduralGenStrategy(new SimpleCaveStrategy());
+                    break;
+                case "gol":
+                    this.SetProceduralGenStrategy(new GameOfLifeStrategy());
+                    break;
+            }
+            cave = algoStrategy.InitializeCave(new Cave());
             this.Canvas.Invalidate();
         }
     }

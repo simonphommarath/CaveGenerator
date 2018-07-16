@@ -41,6 +41,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.iterationBox = new System.Windows.Forms.TextBox();
             this.singleIterationButton = new System.Windows.Forms.Button();
+            this.algorithmComboBox = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Canvas
@@ -63,6 +65,7 @@
             // 
             // birthRateBox
             // 
+            this.birthRateBox.Enabled = false;
             this.birthRateBox.Location = new System.Drawing.Point(80, 10);
             this.birthRateBox.Name = "birthRateBox";
             this.birthRateBox.Size = new System.Drawing.Size(100, 20);
@@ -88,6 +91,7 @@
             // 
             // activeLimitBox
             // 
+            this.activeLimitBox.Enabled = false;
             this.activeLimitBox.Location = new System.Drawing.Point(80, 45);
             this.activeLimitBox.Name = "activeLimitBox";
             this.activeLimitBox.Size = new System.Drawing.Size(100, 20);
@@ -104,6 +108,7 @@
             // 
             // deathLimitBox
             // 
+            this.deathLimitBox.Enabled = false;
             this.deathLimitBox.Location = new System.Drawing.Point(275, 45);
             this.deathLimitBox.Name = "deathLimitBox";
             this.deathLimitBox.Size = new System.Drawing.Size(100, 20);
@@ -130,6 +135,7 @@
             // 
             // iterationBox
             // 
+            this.iterationBox.Enabled = false;
             this.iterationBox.Location = new System.Drawing.Point(275, 10);
             this.iterationBox.Name = "iterationBox";
             this.iterationBox.Size = new System.Drawing.Size(100, 20);
@@ -145,11 +151,31 @@
             this.singleIterationButton.UseVisualStyleBackColor = true;
             this.singleIterationButton.Click += new System.EventHandler(this.singleIterationButton_Click);
             // 
+            // algorithmComboBox
+            // 
+            this.algorithmComboBox.FormattingEnabled = true;
+            this.algorithmComboBox.Location = new System.Drawing.Point(624, 10);
+            this.algorithmComboBox.Name = "algorithmComboBox";
+            this.algorithmComboBox.Size = new System.Drawing.Size(120, 21);
+            this.algorithmComboBox.TabIndex = 12;
+            this.algorithmComboBox.SelectedIndexChanged += new System.EventHandler(this.algorithmComboBox_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(555, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(50, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Algorithm";
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 841);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.algorithmComboBox);
             this.Controls.Add(this.singleIterationButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.iterationBox);
@@ -184,5 +210,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox iterationBox;
         private System.Windows.Forms.Button singleIterationButton;
+        private System.Windows.Forms.ComboBox algorithmComboBox;
+        private System.Windows.Forms.Label label4;
     }
 }
