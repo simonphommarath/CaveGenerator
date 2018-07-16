@@ -13,8 +13,8 @@ namespace CaveGenerator
         const bool WALL = false;
         const bool HOLE = true;
 
-        private int _width = 100;
-        private int _height = 100;
+        private int _width = 50;
+        private int _height = 50;
 
         private int _birthLimit;
         private int _deathLimit;
@@ -28,15 +28,30 @@ namespace CaveGenerator
         /// </summary>
         public CaveGenerator()
         {
-            this._birthLimit = 4;
-            this._deathLimit = 3;
-            this._iterationCount = 5;
-            this._activeChance = 45;
+            this._birthLimit = 5;
+            this._deathLimit = 2;
+            this._iterationCount = 20;
+            this._activeChance = 40;
 
             this._celullarMap = new Boolean[_width, _height];
 
             MakeBlankGrid();
             InitializeCave();
+        }
+
+        public Boolean[,] GetCellularMap()
+        {
+            return this._celullarMap;
+        }
+
+        public int GetWidth()
+        {
+            return this._width;
+        }
+
+        public int GetHeigth()
+        {
+            return this._height;
         }
 
         /// <summary>
@@ -142,22 +157,22 @@ namespace CaveGenerator
         /// Check number of active neighbor
         /// Out of bound is considered active neighbor
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        int getSumOfActiveNeighbor(int dx, int dy)
+        /// <param name="x">X coordinate</param>
+        /// <param name="y">Y coordinate</param>
+        int getSumOfActiveNeighbor(int x, int y)
         {
             int result = 0;
 
-            for (int x = -1; x <= 1; ++x)
+            for (int dx = -1; dx <= 1; ++dx)
             {
-                for (int y = -1; y <= 1; ++y)
+                for (int dy = -1; dy <= 1; ++dy)
                 {
-                    if (x != 0 && y != 0)
+                    if (dx != 0 && dy != 0)
                     {
-                        if (IsOutOfBounds(dx + x, dy + y)) {
+                        if (IsOutOfBounds(x + dx, y + dy)) {
                             result++;
                         }
-                        else if (IsActive(dx + x, dy + y)) {
+                        else if (IsActive(x + dx, y + dy)) {
                             result++;
                         }
                     }
@@ -197,8 +212,8 @@ namespace CaveGenerator
         /// <summary>
         /// Do a simulation
         /// </summary>
-        public void DoSimulation() {
-
+        public void DoSimulation()
+        {
             for (int i = 0; i < _iterationCount; i++)
             {
                 Boolean[,] copyMap = this._celullarMap;

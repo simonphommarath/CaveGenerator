@@ -17,12 +17,6 @@ namespace CaveGenerator
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form());
-
-            CaveGenerator cave = new CaveGenerator();
-            cave.InitializeCave();
-            cave.DoSimulation();
-            cave.PrintGrid();
-
         }
     }
 }
