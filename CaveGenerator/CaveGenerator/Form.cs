@@ -19,7 +19,7 @@ namespace CaveGenerator
 
             cave = new CaveGenerator();
             cave.InitializeCave();
-            cave.DoSimulation();
+            cave.DoSimulation2();
             cave.PrintGrid();
 
             InitializeComponent();
@@ -52,7 +52,7 @@ namespace CaveGenerator
                 {
                     if (caveCell[x, y])
                     {
-                        activeCell = new Rectangle(x * 10, y * 10, 10, 10);
+                        activeCell = new Rectangle(x * cellSize, y * cellSize, 10, 10);
                         e.Graphics.FillRectangle(greenBrush, activeCell);
                         g.DrawRectangle(p, activeCell);
                     }

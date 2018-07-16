@@ -28,9 +28,9 @@ namespace CaveGenerator
         /// </summary>
         public CaveGenerator()
         {
-            this._birthLimit = 5;
+            this._birthLimit = 4;
             this._deathLimit = 2;
-            this._iterationCount = 20;
+            this._iterationCount = 5;
             this._activeChance = 40;
 
             this._celullarMap = new Boolean[_width, _height];
@@ -210,9 +210,9 @@ namespace CaveGenerator
         }
 
         /// <summary>
-        /// Do a simulation
+        /// Do the original simulation
         /// </summary>
-        public void DoSimulation()
+        public void DoSimulation1()
         {
             for (int i = 0; i < _iterationCount; i++)
             {
@@ -240,6 +240,53 @@ namespace CaveGenerator
                                     copyMap[x, y] = HOLE;
                                 }
                                 else {
+                                    copyMap[x, y] = WALL;
+                                }
+                            }
+                        }
+                    }
+                }
+                this._celullarMap = copyMap;
+            }
+        }
+
+        /// <summary>
+        /// Do a custom simulation
+        /// </summary>
+        public void DoSimulation2()
+        {
+            for (int i = 0; i < _iterationCount; i++)
+            {
+                Boolean[,] copyMap = this._celullarMap;
+
+                for (int x = 0; x < _width; x++)
+                {
+                    for (int y = 0; y < _height; y++)
+                    {
+                        if (!IsBorderCell(x, y))
+                        {
+                            int activeNeighbor = getSumOfActiveNeighbor(x, y);
+
+                            // If few neighbours, kill cell.
+                            if (_celullarMap[x, y])
+                            {
+                                if (activeNeighbor < 3)
+                                {
+                                    copyMap[x, y] = WALL;
+                                }
+                                else
+                                {
+                                    copyMap[x, y] = HOLE;
+                                }
+                            } // Else, become active if right number
+                            else
+                            {
+                                if (activeNeighbor > 5)
+                                {
+                                    copyMap[x, y] = HOLE;
+                                }
+                                else
+                                {
                                     copyMap[x, y] = WALL;
                                 }
                             }
