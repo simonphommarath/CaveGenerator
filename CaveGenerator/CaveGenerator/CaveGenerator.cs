@@ -54,6 +54,11 @@ namespace CaveGenerator
             return this._height;
         }
 
+        public int GetIterationCount()
+        {
+            return this._iterationCount;
+        }
+
         /// <summary>
         /// Create a blank map, where all fields are walls
         /// </summary>
@@ -214,40 +219,37 @@ namespace CaveGenerator
         /// </summary>
         public void DoSimulation1()
         {
-            for (int i = 0; i < _iterationCount; i++)
+            Boolean[,] copyMap = this._celullarMap;
+
+            for (int x = 0; x < _width; x++)
             {
-                Boolean[,] copyMap = this._celullarMap;
-
-                for (int x = 0; x < _width; x++)
+                for (int y = 0; y < _height; y++)
                 {
-                    for (int y = 0; y < _height; y++)
+                    if (!IsBorderCell(x, y))
                     {
-                        if (!IsBorderCell(x, y))
-                        {
-                            int activeNeighbor = getSumOfActiveNeighbor(x, y);
+                        int activeNeighbor = getSumOfActiveNeighbor(x, y);
 
-                            // If few neighbours, kill cell.
-                            if (copyMap[x, y]) {
-                                if (activeNeighbor < _deathLimit) {
-                                    copyMap[x, y] = WALL;
-                                }
-                                else { 
-                                    copyMap[x, y] = HOLE;
-                                }
-                            } // Else, become active if right number
+                        // If few neighbours, kill cell.
+                        if (copyMap[x, y]) {
+                            if (activeNeighbor < _deathLimit) {
+                                copyMap[x, y] = WALL;
+                            }
+                            else { 
+                                copyMap[x, y] = HOLE;
+                            }
+                        } // Else, become active if right number
+                        else {
+                            if (activeNeighbor > _birthLimit) {
+                                copyMap[x, y] = HOLE;
+                            }
                             else {
-                                if (activeNeighbor > _birthLimit) {
-                                    copyMap[x, y] = HOLE;
-                                }
-                                else {
-                                    copyMap[x, y] = WALL;
-                                }
+                                copyMap[x, y] = WALL;
                             }
                         }
                     }
                 }
-                this._celullarMap = copyMap;
             }
+            this._celullarMap = copyMap;
         }
 
         /// <summary>
@@ -255,46 +257,43 @@ namespace CaveGenerator
         /// </summary>
         public void DoSimulation2()
         {
-            for (int i = 0; i < _iterationCount; i++)
+            Boolean[,] copyMap = this._celullarMap;
+
+            for (int x = 0; x < _width; x++)
             {
-                Boolean[,] copyMap = this._celullarMap;
-
-                for (int x = 0; x < _width; x++)
+                for (int y = 0; y < _height; y++)
                 {
-                    for (int y = 0; y < _height; y++)
+                    if (!IsBorderCell(x, y))
                     {
-                        if (!IsBorderCell(x, y))
-                        {
-                            int activeNeighbor = getSumOfActiveNeighbor(x, y);
+                        int activeNeighbor = getSumOfActiveNeighbor(x, y);
 
-                            // If few neighbours, kill cell.
-                            if (_celullarMap[x, y])
+                        // If few neighbours, kill cell.
+                        if (_celullarMap[x, y])
+                        {
+                            if (activeNeighbor < 3)
                             {
-                                if (activeNeighbor < 3)
-                                {
-                                    copyMap[x, y] = WALL;
-                                }
-                                else
-                                {
-                                    copyMap[x, y] = HOLE;
-                                }
-                            } // Else, become active if right number
+                                copyMap[x, y] = WALL;
+                            }
                             else
                             {
-                                if (activeNeighbor > 5)
-                                {
-                                    copyMap[x, y] = HOLE;
-                                }
-                                else
-                                {
-                                    copyMap[x, y] = WALL;
-                                }
+                                copyMap[x, y] = HOLE;
+                            }
+                        } // Else, become active if right number
+                        else
+                        {
+                            if (activeNeighbor > 5)
+                            {
+                                copyMap[x, y] = HOLE;
+                            }
+                            else
+                            {
+                                copyMap[x, y] = WALL;
                             }
                         }
                     }
                 }
-                this._celullarMap = copyMap;
             }
+            this._celullarMap = copyMap;
         }
     }
 }

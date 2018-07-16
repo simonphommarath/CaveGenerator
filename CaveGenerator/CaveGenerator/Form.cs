@@ -19,9 +19,8 @@ namespace CaveGenerator
 
             cave = new CaveGenerator();
             cave.InitializeCave();
-            cave.DoSimulation2();
-            cave.PrintGrid();
-
+            //cave.DoSimulation2();
+            //cave.PrintGrid();
             InitializeComponent();
         }
 
@@ -58,6 +57,27 @@ namespace CaveGenerator
                     }
                 }
             }
+        }
+
+        private void iterationButton_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < cave.GetIterationCount(); i++) {
+                cave.DoSimulation2();
+            }
+
+            this.Canvas.Invalidate();
+        }
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            cave.InitializeCave();
+            this.Canvas.Invalidate();
+        }
+
+        private void singleIterationButton_Click(object sender, EventArgs e)
+        {
+            cave.DoSimulation2();
+            this.Canvas.Invalidate();
         }
     }
 }

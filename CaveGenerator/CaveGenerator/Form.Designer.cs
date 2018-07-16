@@ -37,6 +37,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.deathLimitBox = new System.Windows.Forms.TextBox();
             this.resetButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.iterationBox = new System.Windows.Forms.TextBox();
+            this.singleIterationButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Canvas
@@ -49,12 +52,13 @@
             // 
             // iterationButton
             // 
-            this.iterationButton.Location = new System.Drawing.Point(437, 12);
+            this.iterationButton.Location = new System.Drawing.Point(405, 8);
             this.iterationButton.Name = "iterationButton";
             this.iterationButton.Size = new System.Drawing.Size(75, 23);
             this.iterationButton.TabIndex = 1;
-            this.iterationButton.Text = "Do Iteration";
+            this.iterationButton.Text = "Do Iterations";
             this.iterationButton.UseVisualStyleBackColor = true;
+            this.iterationButton.Click += new System.EventHandler(this.iterationButton_Click);
             // 
             // birthRateBox
             // 
@@ -91,7 +95,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(220, 48);
+            this.label2.Location = new System.Drawing.Point(209, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 13);
             this.label2.TabIndex = 7;
@@ -99,25 +103,55 @@
             // 
             // deathLimitBox
             // 
-            this.deathLimitBox.Location = new System.Drawing.Point(286, 45);
+            this.deathLimitBox.Location = new System.Drawing.Point(275, 45);
             this.deathLimitBox.Name = "deathLimitBox";
             this.deathLimitBox.Size = new System.Drawing.Size(100, 20);
             this.deathLimitBox.TabIndex = 6;
             // 
             // resetButton
             // 
-            this.resetButton.Location = new System.Drawing.Point(437, 41);
+            this.resetButton.Location = new System.Drawing.Point(405, 43);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(75, 23);
             this.resetButton.TabIndex = 8;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(214, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Birth Rate";
+            // 
+            // iterationBox
+            // 
+            this.iterationBox.Location = new System.Drawing.Point(275, 10);
+            this.iterationBox.Name = "iterationBox";
+            this.iterationBox.Size = new System.Drawing.Size(100, 20);
+            this.iterationBox.TabIndex = 9;
+            // 
+            // singleIterationButton
+            // 
+            this.singleIterationButton.Location = new System.Drawing.Point(487, 7);
+            this.singleIterationButton.Name = "singleIterationButton";
+            this.singleIterationButton.Size = new System.Drawing.Size(25, 25);
+            this.singleIterationButton.TabIndex = 11;
+            this.singleIterationButton.Text = "+";
+            this.singleIterationButton.UseVisualStyleBackColor = true;
+            this.singleIterationButton.Click += new System.EventHandler(this.singleIterationButton_Click);
             // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(524, 599);
+            this.Controls.Add(this.singleIterationButton);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.iterationBox);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.deathLimitBox);
@@ -145,5 +179,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox deathLimitBox;
         private System.Windows.Forms.Button resetButton;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox iterationBox;
+        private System.Windows.Forms.Button singleIterationButton;
     }
 }
