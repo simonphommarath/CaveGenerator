@@ -13,8 +13,8 @@ namespace CaveGenerator
         const bool WALL = false;
         const bool HOLE = true;
 
-        private int _width = 50;
-        private int _height = 50;
+        private int _width = 75;
+        private int _height = 75;
 
         private int _birthLimit;
         private int _deathLimit;
@@ -31,7 +31,7 @@ namespace CaveGenerator
             this._birthLimit = 4;
             this._deathLimit = 2;
             this._iterationCount = 5;
-            this._activeChance = 40;
+            this._activeChance = 45;
 
             this._celullarMap = new Boolean[_width, _height];
 

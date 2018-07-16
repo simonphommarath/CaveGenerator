@@ -47,7 +47,7 @@
             // 
             this.Canvas.Location = new System.Drawing.Point(12, 77);
             this.Canvas.Name = "Canvas";
-            this.Canvas.Size = new System.Drawing.Size(510, 510);
+            this.Canvas.Size = new System.Drawing.Size(760, 760);
             this.Canvas.TabIndex = 0;
             this.Canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.Canvas_Paint);
             // 
@@ -149,7 +149,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 599);
+            this.ClientSize = new System.Drawing.Size(774, 841);
             this.Controls.Add(this.singleIterationButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.iterationBox);
