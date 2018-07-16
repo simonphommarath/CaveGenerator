@@ -89,8 +89,10 @@ namespace CaveGenerator
 
             for ( int x = 0; x < _width; x++ ) {
                 for ( int y = 0; y < _height; y++ ) {
-                    if (random.Next(0,100) < this._activeChance || IsBorderCell(x,y)) {
-                        map[x,y] = HOLE;
+                    if (!IsBorderCell(x, y)) {
+                        if (random.Next(0, 100) < this._activeChance) {
+                            map[x, y] = HOLE;
+                        }
                     }
                 }
             }
@@ -103,10 +105,10 @@ namespace CaveGenerator
         /// <param name="x">X coordinate</param>
         /// <param name="y">Y coordinate</param>
         /// <returns>Returns true if is a wall</returns>
-        bool IsInactive(int x, int y)
+        bool IsActive(int x, int y)
         {
             if (IsOutOfBounds(x, y)) {
-                return true;
+                return false;
             }
 
             if (_celullarMap[x, y] == HOLE) {
@@ -153,9 +155,18 @@ namespace CaveGenerator
             return false;
         }
 
-        bool IsActive(int x, int y)
+        /// <summary>
+        /// Prints all cells active neighbor for test purpose
+        /// </summary>
+        public void PrintActiveNeighbor()
         {
-            return !_celullarMap[x, y];
+            for (int x = 0; x < _width; x++)
+            {
+                for (int y = 0; y < _height; y++)
+                {
+                    Console.WriteLine("(" + x + "," + y + "): " + getSumOfActiveNeighbor(x, y));
+                }
+            }
         }
 
         /// <summary>
@@ -172,10 +183,10 @@ namespace CaveGenerator
             {
                 for (int dy = -1; dy <= 1; ++dy)
                 {
-                    if (dx != 0 && dy != 0)
+                    if (!(dx == 0 && dy == 0))
                     {
                         if (IsOutOfBounds(x + dx, y + dy)) {
-                            result++;
+                            //result++;
                         }
                         else if (IsActive(x + dx, y + dy)) {
                             result++;
@@ -205,7 +216,6 @@ namespace CaveGenerator
                     for (int x = 0; x < _width; x++)
                     {
                         for (int y = 0; y < _height; y++) {
-                            // Console.WriteLine("(" + x + ","+ y +  "): " + getSumOfActiveNeighbor(x, y));
                             sw.Write(this._celullarMap[x, y] ? "#":" ");
                         }
                         sw.WriteLine();
@@ -267,29 +277,19 @@ namespace CaveGenerator
                     {
                         int activeNeighbor = getSumOfActiveNeighbor(x, y);
 
-                        // If few neighbours, kill cell.
-                        if (_celullarMap[x, y])
-                        {
-                            if (activeNeighbor < 3)
-                            {
-                                copyMap[x, y] = WALL;
-                            }
-                            else
-                            {
-                                copyMap[x, y] = HOLE;
-                            }
-                        } // Else, become active if right number
-                        else
-                        {
-                            if (activeNeighbor > 5)
-                            {
-                                copyMap[x, y] = HOLE;
-                            }
-                            else
-                            {
+                        if (IsActive(x, y)) {
+                            if (activeNeighbor < 3) {
+                                // Underpopulation
                                 copyMap[x, y] = WALL;
                             }
                         }
+                        else {
+                            if (activeNeighbor > 4) {
+                                // reproduction
+                                copyMap[x, y] = HOLE;
+                            }
+                        }
+
                     }
                 }
             }

@@ -16,11 +16,8 @@ namespace CaveGenerator
 
         public Form()
         {
-
             cave = new CaveGenerator();
             cave.InitializeCave();
-            //cave.DoSimulation2();
-            //cave.PrintGrid();
             InitializeComponent();
         }
 
@@ -49,7 +46,7 @@ namespace CaveGenerator
             {
                 for (int y = 0; y < cave.GetHeigth(); y++)
                 {
-                    if (caveCell[x, y])
+                    if (!caveCell[x, y])
                     {
                         activeCell = new Rectangle(x * cellSize, y * cellSize, 10, 10);
                         e.Graphics.FillRectangle(greenBrush, activeCell);
@@ -57,6 +54,7 @@ namespace CaveGenerator
                     }
                 }
             }
+            //cave.PrintActiveNeighbor();
         }
 
         private void iterationButton_Click(object sender, EventArgs e)
@@ -64,7 +62,6 @@ namespace CaveGenerator
             for (int i = 0; i < cave.GetIterationCount(); i++) {
                 cave.DoSimulation2();
             }
-
             this.Canvas.Invalidate();
         }
 
