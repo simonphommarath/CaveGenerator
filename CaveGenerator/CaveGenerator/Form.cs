@@ -55,7 +55,8 @@ namespace CaveGenerator
         private void iterationButton_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < cave._iterationCount; i++) {
-                cave.DoSimulation2();
+                cave.SimpleCaveSimulation();
+                //cave.GameOfLifeSimulation();
             }
             this.Canvas.Invalidate();
         }
@@ -68,7 +69,8 @@ namespace CaveGenerator
 
         private void singleIterationButton_Click(object sender, EventArgs e)
         {
-            cave.DoSimulation2();
+            cave.SimpleCaveSimulation();
+            //cave.GameOfLifeSimulation();
             this.Canvas.Invalidate();
         }
     }

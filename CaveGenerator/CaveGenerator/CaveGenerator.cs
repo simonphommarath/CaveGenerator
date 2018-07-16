@@ -210,7 +210,7 @@ namespace CaveGenerator
         /// <summary>
         /// Do the original simulation
         /// </summary>
-        public void DoSimulation1()
+        public void GameOfLifeSimulation()
         {
             Boolean[,] copyMap = this._celullarMap;
 
@@ -222,21 +222,25 @@ namespace CaveGenerator
                     {
                         int activeNeighbor = getSumOfActiveNeighbor(x, y);
 
-                        // If few neighbours, kill cell.
                         if (copyMap[x, y]) {
-                            if (activeNeighbor < _deathLimit) {
+                            if (activeNeighbor < 2) {
+                                // Underpopulation
                                 copyMap[x, y] = WALL;
                             }
-                            else { 
-                                copyMap[x, y] = HOLE;
-                            }
-                        } // Else, become active if right number
-                        else {
-                            if (activeNeighbor > _birthLimit) {
+                            else if (activeNeighbor == 2 || activeNeighbor == 3)
+                            {
+                                // Reproduction
                                 copyMap[x, y] = HOLE;
                             }
                             else {
+                                // Overpopulation
                                 copyMap[x, y] = WALL;
+                            }
+                        }
+                        else {
+                            if (activeNeighbor == 3) {
+                                // Reproduction
+                                copyMap[x, y] = HOLE;
                             }
                         }
                     }
@@ -248,7 +252,7 @@ namespace CaveGenerator
         /// <summary>
         /// Do a custom simulation
         /// </summary>
-        public void DoSimulation2()
+        public void SimpleCaveSimulation()
         {
             Boolean[,] copyMap = this._celullarMap;
 
@@ -262,13 +266,13 @@ namespace CaveGenerator
 
                         if (IsActive(x, y)) {
                             if (activeNeighbor < 3) {
-                                // Underpopulation
+                                // Fill the holes
                                 copyMap[x, y] = WALL;
                             }
                         }
                         else {
                             if (activeNeighbor > 4) {
-                                // reproduction
+                                // Destroy small walls
                                 copyMap[x, y] = HOLE;
                             }
                         }
