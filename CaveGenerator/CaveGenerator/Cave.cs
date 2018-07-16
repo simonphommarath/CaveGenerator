@@ -3,41 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 
-namespace CaveGenerator
+namespace Cave
 {
 
-    public class CaveGenerator
+    public class Cave
     {
-
-        public int _width { get; private set; }
-        public int _height { get; private set; }
-
-        public int _birthLimit { get; set; }
-        public int _deathLimit { get; set; }
-        public int _iterationCount { get; set; }
-        public int _activeChance { get; set; }
-
         public Boolean[,] _celullarMap { get; set; }
 
         /// <summary>
         /// Constructor to CaveGenerator
         /// </summary>
-        public CaveGenerator()
+        public Cave()
         {
-            this._width = 75;
-            this._height = 75;
-
-            this._birthLimit = 4;
-            this._deathLimit = 2;
-            this._iterationCount = 5;
-            this._activeChance = 45;
-
-            this._celullarMap = new Boolean[_width, _height];
-
+            this._celullarMap = new Boolean[Utility.WIDTH, Utility.HEIGTH];
             MakeBlankGrid();
-            InitializeCave();
         }
 
         /// <summary>
@@ -45,36 +25,14 @@ namespace CaveGenerator
         /// </summary>
         public void MakeBlankGrid()
         {
-            Boolean[,] map = new Boolean[_width, _height];
+            Boolean[,] map = new Boolean[Utility.WIDTH, Utility.HEIGTH];
 
             Random random = new Random();
 
-            for (int x = 0; x < _width; x++)
+            for (int x = 0; x < Utility.WIDTH; x++)
             {
-                for (int y = 0; y < _height; y++) {
+                for (int y = 0; y < Utility.WIDTH; y++) {
                     map[x, y] = Utility.WALL;
-                }
-            }
-            this._celullarMap = map;
-        }
-
-        /// <summary>
-        /// Initialize the cave by setting random cells to active;
-        /// </summary>
-        /// <returns>New initialized map</returns>
-        public void InitializeCave()
-        {
-            Boolean[,] map = new Boolean[_width, _height];
-
-            Random random = new Random();
-
-            for ( int x = 0; x < _width; x++ ) {
-                for ( int y = 0; y < _height; y++ ) {
-                    if (!IsBorderCell(x, y)) {
-                        if (random.Next(0, 100) < this._activeChance) {
-                            map[x, y] = Utility.HOLE;
-                        }
-                    }
                 }
             }
             this._celullarMap = map;
@@ -113,7 +71,7 @@ namespace CaveGenerator
             if (x < 0 || y < 0) {
                 return true;
             }
-            else if (x > _width - 1 || y > _height - 1) {
+            else if (x > Utility.WIDTH - 1 || y > Utility.HEIGTH - 1) {
                 return true;
             }
             return false;
@@ -130,24 +88,10 @@ namespace CaveGenerator
             if (x == 0 || y == 0) {
                 return true;
             }
-            else if (x == _width-1 || y == _height - 1) {
+            else if (x == Utility.WIDTH - 1 || y == Utility.HEIGTH - 1) {
                 return true;
             }
             return false;
-        }
-
-        /// <summary>
-        /// Prints all cells active neighbor for test purpose
-        /// </summary>
-        public void PrintActiveNeighbor()
-        {
-            for (int x = 0; x < _width; x++)
-            {
-                for (int y = 0; y < _height; y++)
-                {
-                    Console.WriteLine("(" + x + "," + y + "): " + GetSumOfActiveNeighbor(x, y));
-                }
-            }
         }
 
         /// <summary>
@@ -156,7 +100,7 @@ namespace CaveGenerator
         /// </summary>
         /// <param name="x">X coordinate</param>
         /// <param name="y">Y coordinate</param>
-        public int GetSumOfActiveNeighbor(int x, int y)
+        public int GetSumOfCellActiveNeighbor(int x, int y)
         {
             int result = 0;
 
@@ -176,33 +120,6 @@ namespace CaveGenerator
                 }
             }
             return result;
-        }
-
-        /// <summary>
-        /// Print grid in text file (temp)
-        /// </summary>
-        public void PrintGrid()
-        {
-            string path = @"D:\MyTest.txt";
-
-            // Delete file
-            if (File.Exists(path)) {
-                File.Delete(path);
-            }
-
-            if (!File.Exists(path)) {
-                // Creates a file and write
-                using (StreamWriter sw = File.CreateText(path))
-                {
-                    for (int x = 0; x < _width; x++)
-                    {
-                        for (int y = 0; y < _height; y++) {
-                            sw.Write(this._celullarMap[x, y] ? "#":" ");
-                        }
-                        sw.WriteLine();
-                    }
-                }
-            }
         }
     }
 }

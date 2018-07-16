@@ -47,7 +47,7 @@
   <ItemGroup>
     <Compile Include="Algorithm\GameOfLifeStrategy.cs" />
     <Compile Include="Algorithm\SimpleCaveStrategy.cs" />
-    <Compile Include="CaveGenerator.cs" />
+    <Compile Include="Cave.cs" />
     <Compile Include="Form.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CaveGenerator
+namespace Cave
 {
     interface IProceduralGenStragery
     {
-        CaveGenerator doSimulation(CaveGenerator cave);
+        int _iterationCount { get; set; }
+
+        Cave doSimulation(Cave cave);
+        Cave InitializeCave(Cave cave);
     }
 }

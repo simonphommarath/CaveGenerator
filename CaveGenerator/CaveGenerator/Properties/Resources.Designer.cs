@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CaveGenerator.Properties
+namespace Cave.Properties
 {
 
 

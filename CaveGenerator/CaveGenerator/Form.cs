@@ -1,4 +1,4 @@
-﻿using CaveGenerator.Algorithm;
+﻿using Cave.Algorithm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,18 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CaveGenerator
+namespace Cave
 {
     public partial class Form : System.Windows.Forms.Form
     {
-        CaveGenerator cave;
+        Cave cave;
         IProceduralGenStragery algoStrategy; 
 
         public Form()
         {
             this.SetProceduralGenStrategy(new SimpleCaveStrategy());
-            cave = new CaveGenerator();
-            cave.InitializeCave();
+            cave = algoStrategy.InitializeCave(new Cave());
             InitializeComponent();
         }
 
@@ -34,17 +33,17 @@ namespace CaveGenerator
             SolidBrush greenBrush = new SolidBrush(Color.Green);
             Rectangle activeCell;
 
-            for (int y = 0; y < cave._width + 1; ++y) {
-                g.DrawLine(p, 0, y * cellSize, cave._width * cellSize, y * cellSize);
+            for (int y = 0; y < Utility.WIDTH + 1; ++y) {
+                g.DrawLine(p, 0, y * cellSize, Utility.WIDTH * cellSize, y * cellSize);
             }
 
-            for (int x = 0; x < cave._height + 1; ++x) {
-                g.DrawLine(p, x * cellSize, 0, x * cellSize, cave._height * cellSize);
+            for (int x = 0; x < Utility.HEIGTH + 1; ++x) {
+                g.DrawLine(p, x * cellSize, 0, x * cellSize, Utility.HEIGTH * cellSize);
             }
 
-            for (int x = 0; x < cave._width; x++)
+            for (int x = 0; x < Utility.WIDTH; x++)
             {
-                for (int y = 0; y < cave._height; y++)
+                for (int y = 0; y < Utility.HEIGTH; y++)
                 {
                     if (!caveCell[x, y]) {
                         activeCell = new Rectangle(x * cellSize, y * cellSize, 10, 10);
@@ -60,23 +59,24 @@ namespace CaveGenerator
             algoStrategy = strategy;
         }
 
+
         private void iterationButton_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < cave._iterationCount; i++) {
-                algoStrategy.doSimulation(cave);
+            for (int i = 0; i < algoStrategy._iterationCount; i++) {
+                cave = algoStrategy.doSimulation(cave);
             }
             this.Canvas.Invalidate();
         }
 
         private void resetButton_Click(object sender, EventArgs e)
         {
-            cave.InitializeCave();
+            cave = algoStrategy.InitializeCave(new Cave());
             this.Canvas.Invalidate();
         }
 
         private void singleIterationButton_Click(object sender, EventArgs e)
         {
-            algoStrategy.doSimulation(cave);
+            cave = algoStrategy.doSimulation(cave);
             this.Canvas.Invalidate();
         }
     }
