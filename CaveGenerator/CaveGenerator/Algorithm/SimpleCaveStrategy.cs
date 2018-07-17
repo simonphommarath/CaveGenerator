@@ -1,10 +1,12 @@
-﻿using System;
+﻿using CaveGenerator;
+using CaveGenerator.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cave.Algorithm
+namespace CaveGenerator.Algorithm
 {
     class SimpleCaveStrategy : IProceduralGenStragery
     {

@@ -1,4 +1,4 @@
-﻿namespace Cave
+﻿namespace CaveGenerator
 {
     partial class Form
     {

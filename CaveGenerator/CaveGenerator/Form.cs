@@ -1,4 +1,6 @@
-﻿using Cave.Algorithm;
+﻿using CaveGenerator;
+using CaveGenerator.Algorithm;
+using CaveGenerator.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Cave
+namespace CaveGenerator
 {
     public partial class Form : System.Windows.Forms.Form
     {
@@ -22,10 +24,10 @@ namespace Cave
             cave = algoStrategy.InitializeCave(new Cave());
             InitializeComponent();
 
-            var dataSource = new List<CaveGenerator.Model.Algorithm>();
+            var dataSource = new List<AlgorithmDataSource>();
 
-            dataSource.Add( new CaveGenerator.Model.Algorithm() { Name = "Simple Cave", Tag = "sc" });
-            dataSource.Add( new CaveGenerator.Model.Algorithm() { Name = "Game of life", Tag = "gol" });
+            dataSource.Add( new AlgorithmDataSource() { Name = "Simple Cave", Tag = "sc" });
+            dataSource.Add( new AlgorithmDataSource() { Name = "Game of life", Tag = "gol" });
 
             this.algorithmComboBox.DataSource = dataSource;
             this.algorithmComboBox.DisplayMember = "Name";

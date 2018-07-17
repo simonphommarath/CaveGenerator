@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CaveGenerator.Model
 {
-    class Algorithm
+    class AlgorithmDataSource
     {
         public string Name { get; set; }
         public string Tag { get; set; }

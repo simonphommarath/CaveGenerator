@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cave
+namespace CaveGenerator.Model
 {
-
     public class Cave
     {
         public Boolean[,] _celullarMap { get; set; }

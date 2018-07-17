@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CaveGenerator;
+using CaveGenerator.Model;
 
-namespace Cave
+namespace CaveGenerator.Algorithm
 {
     interface IProceduralGenStragery
     {
