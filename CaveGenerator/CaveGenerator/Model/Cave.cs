@@ -30,7 +30,7 @@ namespace CaveGenerator.Model
 
             for (int x = 0; x < Utility.WIDTH; x++)
             {
-                for (int y = 0; y < Utility.WIDTH; y++) {
+                for (int y = 0; y < Utility.HEIGTH; y++) {
                     map[x, y] = Utility.WALL;
                 }
             }

@@ -13,7 +13,7 @@ namespace CaveGenerator
         public const bool WALL = false;
         public const bool HOLE = true;
 
-        public const int WIDTH = 75;
+        public const int WIDTH = 130;
         public const int HEIGTH= 75;
 
         /// <summary>

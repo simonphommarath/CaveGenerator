@@ -48,6 +48,7 @@
     <Compile Include="Algorithm\GameOfLifeStrategy.cs" />
     <Compile Include="Algorithm\OpenPlatformStrategy.cs" />
     <Compile Include="Algorithm\SimpleCaveStrategy.cs" />
+    <Compile Include="Algorithm\StalagmiteStrategy.cs" />
     <Compile Include="Model\Cave.cs" />
     <Compile Include="Form.cs">
       <SubType>Form</SubType>

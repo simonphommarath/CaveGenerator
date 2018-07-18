@@ -43,19 +43,17 @@ namespace CaveGenerator
 
             Graphics g = e.Graphics;
             int cellSize = 10;
-            Pen p = new Pen(Color.Green);
+            Pen p = new Pen(Color.Black);
             //p.Alignment = PenAlignment.Inset; //<-- this
             SolidBrush greenBrush = new SolidBrush(Color.Green);
             Rectangle activeCell;
             
-            for (int y = 0; y < Utility.WIDTH + 1; ++y) {
+            for (int y = 0; y < Utility.WIDTH + 1; ++y)
+            {
                 g.DrawLine(p, 0, y * cellSize, Utility.WIDTH * cellSize, y * cellSize);
+                g.DrawLine(p, y * cellSize, 0, y * cellSize, Utility.HEIGTH * cellSize);
             }
 
-            for (int x = 0; x < Utility.HEIGTH + 1; ++x) {
-                g.DrawLine(p, x * cellSize, 0, x * cellSize, Utility.HEIGTH * cellSize);
-            }
-            
             for (int x = 0; x < Utility.WIDTH; x++)
             {
                 for (int y = 0; y < Utility.HEIGTH; y++)
