@@ -13,16 +13,13 @@ namespace CaveGenerator.Algorithm
         public int _iterationCount { get; set; }
 
         public int _floorLimit { get; set; }
-        public List<AASeedStrategy> seeds { get; set; }
 
         Random random;
 
         public StalagmiteStrategy()
         {
-            _iterationCount = 10;
+            _iterationCount = 20;
             _floorLimit = 70;
-
-            seeds = new List<AASeedStrategy>();
 
             random = new Random();
         }
@@ -33,14 +30,17 @@ namespace CaveGenerator.Algorithm
 
             for (int x = 0; x < Utility.WIDTH; x++)
             {
-                for (int y = _floorLimit; y < Utility.HEIGTH; y++) {
-                    cave._celullarMap[x,y] = Utility.WALL;
+                for (int y = 0; y < _floorLimit; y++)
+                {
+                    // TBD
                 }
             }
 
-            CreateSeed();
-            foreach (var seed in seeds) {
-                cave._celullarMap[seed._x, seed._y] = Utility.WALL;
+            for (int x = 0; x < Utility.WIDTH; x++)
+            {
+                for (int y = _floorLimit; y < Utility.HEIGTH; y++) {
+                    cave._celullarMap[x,y] = Utility.WALL;
+                }
             }
             
             return cave;
@@ -50,35 +50,10 @@ namespace CaveGenerator.Algorithm
         {
             Boolean[,] copyMap = cave._celullarMap;
 
-            foreach (var seed in seeds)
-            {
-                seed.NextPosition();
-                if (seed._isAlive)
-                {
-                    if (cave.IsOutOfBounds(seed._x, seed._y))
-                    {
-                        seed._isAlive = false;
-                    }
-                    else
-                    {
-                        cave._celullarMap[seed._x, seed._y] = Utility.WALL;
-                    }
-                }
-            }
+            // TBD
 
             cave._celullarMap = copyMap;
             return cave;
-        }
-
-        public void CreateSeed()
-        {
-            seeds = new List<AASeedStrategy>();
-            int seedNumber = random.Next(5,10);
-            int seedDistance = Utility.WIDTH / seedNumber;
-
-            for (int i = 1; i < seedNumber; i++) {
-                seeds.Add(new AASeedStrategy(i * (seedDistance + random.Next(-2,2)), _floorLimit-1));
-            }
         }
     }
 }

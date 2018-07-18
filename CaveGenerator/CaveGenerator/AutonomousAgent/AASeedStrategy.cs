@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CaveGenerator.AutonomousAgent
 {
-    class AASeedStrategy : IAutonomousAgent
+    public class AASeedStrategy : IAutonomousAgent
     {
         public int _x { get; set; }
         public int _y { get; set; }
@@ -17,6 +17,10 @@ namespace CaveGenerator.AutonomousAgent
         public int _growthChanceSouth { get; set; }
 
         public bool _isAlive { get; set; }
+        public int _age { get; set; }
+        public int _lifetimeDeathChance { get; set; }
+        public int _maxLifetime { get; set; }
+        public int _minLifetime { get; set; }
 
         Random rdm;
 
@@ -31,18 +35,46 @@ namespace CaveGenerator.AutonomousAgent
             this._growthChanceSouth = growthChanceSouth;
 
             this._isAlive = true;
+            this._age = 0;
+            this._lifetimeDeathChance = 5;
+            this._minLifetime = 60;
+            this._maxLifetime = 160;
         }
 
-        public void NextPosition()
+        public void NextAction()
         {
             rdm = new Random(Guid.NewGuid().GetHashCode());
 
-            if(rdm.Next(1,100) < _growthChanceNorth) {
+            if (_age > _maxLifetime) {
+                this._isAlive = false;
+            }
+            else if (_age > _minLifetime && _age < _maxLifetime)
+            {
+                if (rdm.Next(1, 100) < _lifetimeDeathChance) {
+                    this._isAlive = false;
+                }
+                else{
+                    Grow();
+                }
+            }
+            else{
+                Grow();
+            }
+            _age++;
+        }
+
+        void Grow()
+        {
+            if (rdm.Next(1, 100) < _growthChanceNorth)
+            {
                 this._y--;
             }
-            else if (rdm.Next(1, 100) < _growthChanceWest) {
+            else if (rdm.Next(1, 100) < _growthChanceWest)
+            {
                 this._x--;
-            } else if (rdm.Next(1, 100) < _growthChanceEast) {
+            }
+            else if (rdm.Next(1, 100) < _growthChanceEast)
+            {
                 this._x++;
             }
         }
