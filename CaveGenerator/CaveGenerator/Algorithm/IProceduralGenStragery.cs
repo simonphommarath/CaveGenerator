@@ -12,7 +12,7 @@ namespace CaveGenerator.Algorithm
     {
         int _iterationCount { get; set; }
 
-        Cave doSimulation(Cave cave);
         Cave InitializeCave(Cave cave);
+        Cave doSimulation(Cave cave);
     }
 }

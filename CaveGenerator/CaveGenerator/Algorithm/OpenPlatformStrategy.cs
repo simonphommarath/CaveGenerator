@@ -53,6 +53,7 @@ namespace CaveGenerator.Algorithm
         /// <returns>New initialized map</returns>
         public Cave InitializeCave(Cave cave)
         {
+            cave.MakeBlankGrid();
             for (int x = 0; x < Utility.WIDTH; x++)
             {
                 for (int y = 0; y < _upperFloorLimit; y++)

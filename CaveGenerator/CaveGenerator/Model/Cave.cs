@@ -16,7 +16,6 @@ namespace CaveGenerator.Model
         public Cave()
         {
             this._celullarMap = new Boolean[Utility.WIDTH, Utility.HEIGTH];
-            MakeBlankGrid();
         }
 
         /// <summary>
