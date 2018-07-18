@@ -49,6 +49,8 @@
     <Compile Include="Algorithm\OpenPlatformStrategy.cs" />
     <Compile Include="Algorithm\SimpleCaveStrategy.cs" />
     <Compile Include="Algorithm\StalagmiteStrategy.cs" />
+    <Compile Include="AutonomousAgent\AASeedStrategy.cs" />
+    <Compile Include="AutonomousAgent\IAutonomousAgent.cs" />
     <Compile Include="Model\Cave.cs" />
     <Compile Include="Form.cs">
       <SubType>Form</SubType>
@@ -58,7 +60,6 @@
     </Compile>
     <Compile Include="Algorithm\IProceduralGenStragery.cs" />
     <Compile Include="Model\AlgorithmDataSource.cs" />
-    <Compile Include="Model\Seed.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility.cs" />

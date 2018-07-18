@@ -92,7 +92,6 @@ namespace CaveGenerator.Algorithm
                     }
                 }
             }
-
             return cave;
         }
 

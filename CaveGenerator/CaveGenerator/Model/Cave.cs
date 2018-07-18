@@ -24,17 +24,14 @@ namespace CaveGenerator.Model
         /// <param name="isFullOfHole">cell default value</param>
         public void MakeBlankGrid(bool isFullOfHole)
         {
-            Boolean[,] map = new Boolean[Utility.WIDTH, Utility.HEIGTH];
             Random random = new Random();
 
             for (int x = 0; x < Utility.WIDTH; x++)
             {
                 for (int y = 0; y < Utility.HEIGTH; y++) {
-                    map[x, y] = isFullOfHole;
+                    this._celullarMap[x, y] = isFullOfHole;
                 }
             }
-
-            this._celullarMap = map;
         }
 
         /// <summary>

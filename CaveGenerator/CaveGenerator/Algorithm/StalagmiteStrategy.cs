@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CaveGenerator.Model;
+using CaveGenerator.AutonomousAgent;
 
 namespace CaveGenerator.Algorithm
 {
@@ -11,24 +12,37 @@ namespace CaveGenerator.Algorithm
     {
         public int _iterationCount { get; set; }
 
+        public int _floorLimit { get; set; }
+        public List<AASeedStrategy> seeds { get; set; }
+
+        Random random;
+
         public StalagmiteStrategy()
         {
-            _iterationCount = 0;
+            _iterationCount = 10;
+            _floorLimit = 70;
+
+            seeds = new List<AASeedStrategy>();
+
+            random = new Random();
         }
 
         public Cave InitializeCave(Cave cave)
         {
-            Random random = new Random();
+            cave.MakeBlankGrid(true);
 
             for (int x = 0; x < Utility.WIDTH; x++)
             {
-                for (int y = 0; y < Utility.HEIGTH; y++)
-                {
-                    if (!cave.IsBorderCell(x, y)) {
-
-                    }
+                for (int y = _floorLimit; y < Utility.HEIGTH; y++) {
+                    cave._celullarMap[x,y] = Utility.WALL;
                 }
             }
+
+            CreateSeed();
+            foreach (var seed in seeds) {
+                cave._celullarMap[seed._x, seed._y] = Utility.WALL;
+            }
+            
             return cave;
         }
 
@@ -36,17 +50,35 @@ namespace CaveGenerator.Algorithm
         {
             Boolean[,] copyMap = cave._celullarMap;
 
-            for (int x = 0; x < Utility.WIDTH; x++)
+            foreach (var seed in seeds)
             {
-                for (int y = 0; y < Utility.HEIGTH; y++)
+                seed.NextPosition();
+                if (seed._isAlive)
                 {
-                    if (!cave.IsBorderCell(x, y)) {
-
+                    if (cave.IsOutOfBounds(seed._x, seed._y))
+                    {
+                        seed._isAlive = false;
+                    }
+                    else
+                    {
+                        cave._celullarMap[seed._x, seed._y] = Utility.WALL;
                     }
                 }
             }
+
             cave._celullarMap = copyMap;
             return cave;
+        }
+
+        public void CreateSeed()
+        {
+            seeds = new List<AASeedStrategy>();
+            int seedNumber = random.Next(5,10);
+            int seedDistance = Utility.WIDTH / seedNumber;
+
+            for (int i = 1; i < seedNumber; i++) {
+                seeds.Add(new AASeedStrategy(i * (seedDistance + random.Next(-2,2)), _floorLimit-1));
+            }
         }
     }
 }
