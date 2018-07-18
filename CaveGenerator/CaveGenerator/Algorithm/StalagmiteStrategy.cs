@@ -24,8 +24,7 @@ namespace CaveGenerator.Algorithm
             {
                 for (int y = 0; y < Utility.HEIGTH; y++)
                 {
-                    if (!cave.IsBorderCell(x, y))
-                    {
+                    if (!cave.IsBorderCell(x, y)) {
 
                     }
                 }
@@ -41,8 +40,7 @@ namespace CaveGenerator.Algorithm
             {
                 for (int y = 0; y < Utility.HEIGTH; y++)
                 {
-                    if (!cave.IsBorderCell(x, y))
-                    {
+                    if (!cave.IsBorderCell(x, y)) {
 
                     }
                 }

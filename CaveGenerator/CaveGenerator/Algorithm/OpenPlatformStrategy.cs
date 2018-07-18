@@ -53,33 +53,42 @@ namespace CaveGenerator.Algorithm
         /// <returns>New initialized map</returns>
         public Cave InitializeCave(Cave cave)
         {
-            cave.MakeBlankGrid();
+            cave.MakeBlankGrid(true);
             for (int x = 0; x < Utility.WIDTH; x++)
             {
                 for (int y = 0; y < _upperFloorLimit; y++)
                 {
                     if (!cave.IsBorderCell(x, y)){
-                        if (random.Next(1, 200) < this._activeChanceOnAir) {
-                            cave._celullarMap[x, y] = Utility.HOLE;
+                        if (!(random.Next(1, 200) < this._activeChanceOnAir)) {
+                            cave._celullarMap[x, y] = Utility.WALL;
                         }
+                    }
+                    else {
+                        cave._celullarMap[x, y] = Utility.WALL;
                     }
                 }
 
                 for (int y = _upperFloorLimit; y < _lowerFloorLimit; y++)
                 {
                     if (!cave.IsBorderCell(x, y)) {
-                        if (random.Next(1, 100) < this._activeChanceOnCrust) {
-                            cave._celullarMap[x, y] = Utility.HOLE;
+                        if (!(random.Next(1, 100) < this._activeChanceOnCrust)) {
+                            cave._celullarMap[x, y] = Utility.WALL;
                         }
+                    }
+                    else {
+                        cave._celullarMap[x, y] = Utility.WALL;
                     }
                 }
 
                 for (int y = _lowerFloorLimit; y < Utility.HEIGTH; y++)
                 {
                     if(!cave.IsBorderCell(x, y)) {
-                        if (random.Next(1, 100) < this._activeChanceGround) {
-                            cave._celullarMap[x, y] = Utility.HOLE;
+                        if (!(random.Next(1, 100) < this._activeChanceGround)) {
+                            cave._celullarMap[x, y] = Utility.WALL;
                         }
+                    }
+                    else {
+                        cave._celullarMap[x, y] = Utility.WALL;
                     }
                 }
             }

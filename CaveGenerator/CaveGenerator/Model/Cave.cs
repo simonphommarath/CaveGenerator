@@ -19,20 +19,21 @@ namespace CaveGenerator.Model
         }
 
         /// <summary>
-        /// Create a blank map, where all fields are walls
+        /// Create a blank map, where all fields are the same
         /// </summary>
-        public void MakeBlankGrid()
+        /// <param name="isFullOfHole">cell default value</param>
+        public void MakeBlankGrid(bool isFullOfHole)
         {
             Boolean[,] map = new Boolean[Utility.WIDTH, Utility.HEIGTH];
-
             Random random = new Random();
 
             for (int x = 0; x < Utility.WIDTH; x++)
             {
                 for (int y = 0; y < Utility.HEIGTH; y++) {
-                    map[x, y] = Utility.WALL;
+                    map[x, y] = isFullOfHole;
                 }
             }
+
             this._celullarMap = map;
         }
 

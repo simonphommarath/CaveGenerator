@@ -30,7 +30,7 @@ namespace CaveGenerator.Algorithm
         /// <returns>New initialized map</returns>
         public Cave InitializeCave(Cave cave)
         {
-            cave.MakeBlankGrid();
+            cave.MakeBlankGrid(false);
             Random random = new Random();
 
             for (int x = 0; x < Utility.WIDTH; x++)
