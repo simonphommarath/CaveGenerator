@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,8 @@ namespace CaveGenerator
             var dataSource = new List<AlgorithmDataSource>();
 
             dataSource.Add( new AlgorithmDataSource() { Name = "Simple Cave", Tag = "sc" });
-            dataSource.Add( new AlgorithmDataSource() { Name = "Game of life", Tag = "gol" });
+            dataSource.Add( new AlgorithmDataSource() { Name = "Game of life", Tag = "gol" }); 
+            dataSource.Add( new AlgorithmDataSource() { Name = "Open Platform (L1)", Tag = "op" }); 
 
             this.algorithmComboBox.DataSource = dataSource;
             this.algorithmComboBox.DisplayMember = "Name";
@@ -41,10 +43,11 @@ namespace CaveGenerator
 
             Graphics g = e.Graphics;
             int cellSize = 10;
-            Pen p = new Pen(Color.Black);
+            Pen p = new Pen(Color.Green);
+            //p.Alignment = PenAlignment.Inset; //<-- this
             SolidBrush greenBrush = new SolidBrush(Color.Green);
             Rectangle activeCell;
-
+            
             for (int y = 0; y < Utility.WIDTH + 1; ++y) {
                 g.DrawLine(p, 0, y * cellSize, Utility.WIDTH * cellSize, y * cellSize);
             }
@@ -52,7 +55,7 @@ namespace CaveGenerator
             for (int x = 0; x < Utility.HEIGTH + 1; ++x) {
                 g.DrawLine(p, x * cellSize, 0, x * cellSize, Utility.HEIGTH * cellSize);
             }
-
+            
             for (int x = 0; x < Utility.WIDTH; x++)
             {
                 for (int y = 0; y < Utility.HEIGTH; y++)
@@ -101,6 +104,9 @@ namespace CaveGenerator
                     break;
                 case "gol":
                     this.SetProceduralGenStrategy(new GameOfLifeStrategy());
+                    break;
+                case "op":
+                    this.SetProceduralGenStrategy(new OpenPlatformStrategy());
                     break;
             }
             cave = algoStrategy.InitializeCave(new Cave());
