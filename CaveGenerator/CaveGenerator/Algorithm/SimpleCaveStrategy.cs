@@ -29,7 +29,7 @@ namespace CaveGenerator.Algorithm
         /// <returns>New initialized map</returns>
         public Cave InitializeCave(Cave cave)
         {
-            cave.MakeBlankGrid(false);
+            cave.MakeBlankGrid();
             Random random = new Random();
 
             for (int x = 0; x < Utility.WIDTH; x++)
@@ -40,7 +40,7 @@ namespace CaveGenerator.Algorithm
                     {
                         if (random.Next(0, 100) < this._activeChance)
                         {
-                            cave._celullarMap[x, y] = Utility.HOLE;
+                            cave._celullarMap[x, y].state = Utility.STATE.Air;
                         }
                     }
                 }
@@ -55,7 +55,7 @@ namespace CaveGenerator.Algorithm
         /// <returns></returns>
         public Cave doSimulation(Cave cave)
         {
-            Boolean[,] copyMap = cave._celullarMap;
+            Cell[,] copyMap = cave._celullarMap;
 
             for (int x = 0; x < Utility.WIDTH; x++)
             {
@@ -70,7 +70,7 @@ namespace CaveGenerator.Algorithm
                             if (activeNeighbor < _birthLimit)
                             {
                                 // Fill the holes
-                                copyMap[x, y] = Utility.WALL;
+                                copyMap[x, y].state = Utility.STATE.Rock;
                             }
                         }
                         else
@@ -78,7 +78,7 @@ namespace CaveGenerator.Algorithm
                             if (activeNeighbor > _deathLimit)
                             {
                                 // Destroy small walls
-                                copyMap[x, y] = Utility.HOLE;
+                                copyMap[x, y].state = Utility.STATE.Air;
                             }
                         }
                     }

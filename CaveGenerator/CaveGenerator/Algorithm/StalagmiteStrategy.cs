@@ -26,7 +26,7 @@ namespace CaveGenerator.Algorithm
 
         public Cave InitializeCave(Cave cave)
         {
-            cave.MakeBlankGrid(true);
+            cave.MakeBlankGrid();
 
             for (int x = 0; x < Utility.WIDTH; x++)
             {
@@ -39,7 +39,7 @@ namespace CaveGenerator.Algorithm
             for (int x = 0; x < Utility.WIDTH; x++)
             {
                 for (int y = _floorLimit; y < Utility.HEIGTH; y++) {
-                    cave._celullarMap[x,y] = Utility.WALL;
+                    cave._celullarMap[x,y].state = Utility.STATE.Rock;
                 }
             }
             
@@ -48,7 +48,7 @@ namespace CaveGenerator.Algorithm
 
         public Cave doSimulation(Cave cave)
         {
-            Boolean[,] copyMap = cave._celullarMap;
+            Cell[,] copyMap = cave._celullarMap;
 
             // TBD
 

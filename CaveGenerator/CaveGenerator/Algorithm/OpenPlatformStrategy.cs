@@ -39,18 +39,18 @@ namespace CaveGenerator.Algorithm
         /// <returns>New initialized map</returns>
         public Cave InitializeCave(Cave cave)
         {
-            cave.MakeBlankGrid(true);
+            cave.MakeBlankGrid();
             for (int x = 0; x < Utility.WIDTH; x++)
             {
                 for (int y = 0; y < Utility.HEIGTH; y++)
                 {
                     if (!cave.IsBorderCell(x, y)){
                         if (!(random.Next(1, 200) < this._activeChanceOnAir)) {
-                            cave._celullarMap[x, y] = Utility.WALL;
+                            cave._celullarMap[x, y].state = Utility.STATE.Rock;
                         }
                     }
                     else {
-                        cave._celullarMap[x, y] = Utility.WALL;
+                         cave._celullarMap[x, y].state = Utility.STATE.Rock;
                     }
                 }
             }
@@ -64,24 +64,24 @@ namespace CaveGenerator.Algorithm
         /// <returns></returns>
         public Cave doSimulation(Cave cave)
         {
-            Boolean[,] copyMap = cave._celullarMap;
+            Cell[,] copyMap = cave._celullarMap;
 
             for (int x = 0; x < Utility.WIDTH; x++)
             {
                 for (int y = 0; y < Utility.HEIGTH; y++)
                 {
                     if(!cave.IsBorderCell(x, y)) {
-                        if (cave._celullarMap[x, y] == Utility.WALL)
+                        if (cave._celullarMap[x, y].state == Utility.STATE.Rock)
                         {
                             if (random.Next(1, 100) < this._growthHorizontalChance) {
 
-                                copyMap[x - 1, y] = Utility.WALL;
+                                copyMap[x - 1, y].state = Utility.STATE.Rock;
                             }
                             if (random.Next(1, 100) < this._growthHorizontalChance) {
-                                copyMap[x + 1, y] = Utility.WALL;
+                                copyMap[x + 1, y].state = Utility.STATE.Rock;
                             }
                             if (random.Next(1, 100) < this._growthVerticalChance){
-                                copyMap[x, y + 1] = Utility.WALL;
+                                copyMap[x, y + 1].state = Utility.STATE.Rock;
                             }
                         }
                     }

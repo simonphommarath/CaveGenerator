@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CaveGenerator;
 using CaveGenerator.Model;
+using static CaveGenerator.Utility;
 
 namespace CaveGenerator.Algorithm
 {
@@ -30,7 +31,7 @@ namespace CaveGenerator.Algorithm
         /// <returns>New initialized map</returns>
         public Cave InitializeCave(Cave cave)
         {
-            cave.MakeBlankGrid(false);
+            cave.MakeBlankGrid();
             Random random = new Random();
 
             for (int x = 0; x < Utility.WIDTH; x++)
@@ -41,7 +42,7 @@ namespace CaveGenerator.Algorithm
                     {
                         if (random.Next(0, 100) < this._activeChance)
                         {
-                            cave._celullarMap[x, y] = Utility.HOLE;
+                            cave._celullarMap[x, y].state = Utility.STATE.Air;
                         }
                     }
                 }
@@ -56,7 +57,7 @@ namespace CaveGenerator.Algorithm
         /// <returns></returns>
         public Cave doSimulation(Cave cave)
         {
-            Boolean[,] copyMap = cave._celullarMap;
+            Cell[,] copyMap = cave._celullarMap;
 
             for (int x = 0; x < Utility.WIDTH; x++)
             {
@@ -66,22 +67,22 @@ namespace CaveGenerator.Algorithm
                     {
                         int activeNeighbor = cave.GetSumOfCellActiveNeighbor(x, y);
 
-                        if (copyMap[x, y])
+                        if (copyMap[x, y].state == STATE.Air)
                         {
                             if (activeNeighbor < _birthLimit)
                             {
                                 // Underpopulation
-                                copyMap[x, y] = Utility.WALL;
+                                copyMap[x, y].state = STATE.Rock;
                             }
                             else if (activeNeighbor == _birthLimit || activeNeighbor == _deathLimit)
                             {
                                 // Reproduction
-                                copyMap[x, y] = Utility.HOLE;
+                                copyMap[x, y].state = STATE.Air;
                             }
                             else
                             {
                                 // Overpopulation
-                                copyMap[x, y] = Utility.WALL;
+                                copyMap[x, y].state = STATE.Rock;
                             }
                         }
                         else
@@ -89,7 +90,7 @@ namespace CaveGenerator.Algorithm
                             if (activeNeighbor == _deathLimit)
                             {
                                 // Reproduction
-                                copyMap[x, y] = Utility.HOLE;
+                                copyMap[x, y].state = STATE.Air;
                             }
                         }
                     }

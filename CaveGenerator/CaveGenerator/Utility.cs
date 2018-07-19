@@ -10,11 +10,16 @@ namespace CaveGenerator
 {
     public static class Utility
     {
-        public const bool WALL = false;
-        public const bool HOLE = true;
+        public enum STATE
+        {
+            Rock,
+            Air,
+            Other,
+            Seed
+        }
 
         public const int WIDTH = 130;
-        public const int HEIGTH= 75;
+        public const int HEIGTH = 75;
 
         /// <summary>
         /// Print grid in text file (temp)

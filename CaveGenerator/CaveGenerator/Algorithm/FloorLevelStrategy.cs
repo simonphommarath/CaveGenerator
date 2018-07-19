@@ -45,7 +45,7 @@ namespace CaveGenerator.Algorithm
         /// <returns>New initialized map</returns>
         public Cave InitializeCave(Cave cave)
         {
-            cave.MakeBlankGrid(true);
+            cave.MakeBlankGrid();
 
             for (int x = 0; x < Utility.WIDTH; x++)
             {
@@ -55,12 +55,12 @@ namespace CaveGenerator.Algorithm
                     {
                         if (!(random.Next(1, 100) < this._activeChanceOnCrust))
                         {
-                            cave._celullarMap[x, y] = Utility.WALL;
+                            cave._celullarMap[x, y].state = Utility.STATE.Rock;
                         }
                     }
                     else
                     {
-                        cave._celullarMap[x, y] = Utility.WALL;
+                        cave._celullarMap[x, y].state = Utility.STATE.Rock;
                     }
                 }
 
@@ -70,12 +70,12 @@ namespace CaveGenerator.Algorithm
                     {
                         if (!(random.Next(1, 100) < this._activeChanceGround))
                         {
-                            cave._celullarMap[x, y] = Utility.WALL;
+                            cave._celullarMap[x, y].state = Utility.STATE.Rock;
                         }
                     }
                     else
                     {
-                        cave._celullarMap[x, y] = Utility.WALL;
+                            cave._celullarMap[x, y].state = Utility.STATE.Rock;
                     }
                 }
             }
@@ -89,7 +89,7 @@ namespace CaveGenerator.Algorithm
         /// <returns></returns>
         public Cave doSimulation(Cave cave)
         {
-            Boolean[,] copyMap = cave._celullarMap;
+            Cell[,] copyMap = cave._celullarMap;
 
             for (int x = 0; x < Utility.WIDTH; x++)
             {
@@ -104,7 +104,7 @@ namespace CaveGenerator.Algorithm
                             if (activeNeighbor < _birthLimit)
                             {
                                 // Fill the holes
-                                copyMap[x, y] = Utility.WALL;
+                                copyMap[x, y].state = Utility.STATE.Rock;
                             }
                         }
                         else
@@ -112,7 +112,7 @@ namespace CaveGenerator.Algorithm
                             if (activeNeighbor > _deathLimit)
                             {
                                 // Destroy small walls
-                                copyMap[x, y] = Utility.HOLE;
+                                copyMap[x, y].state = Utility.STATE.Air;
                             }
                         }
                     }

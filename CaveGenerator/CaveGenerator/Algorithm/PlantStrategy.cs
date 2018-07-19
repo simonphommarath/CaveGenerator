@@ -29,20 +29,20 @@ namespace CaveGenerator.Algorithm
 
         public Cave InitializeCave(Cave cave)
         {
-            cave.MakeBlankGrid(true);
+            cave.MakeBlankGrid();
 
             for (int x = 0; x < Utility.WIDTH; x++)
             {
                 for (int y = _floorLimit; y < Utility.HEIGTH; y++)
                 {
-                    cave._celullarMap[x, y] = Utility.WALL;
+                    cave._celullarMap[x, y].state = Utility.STATE.Rock;
                 }
             }
 
             CreateSeed();
             foreach (var seed in seeds)
             {
-                cave._celullarMap[seed._x, seed._y] = Utility.WALL;
+                cave._celullarMap[seed._x, seed._y].state = Utility.STATE.Seed;
             }
 
             return cave;
@@ -50,7 +50,7 @@ namespace CaveGenerator.Algorithm
 
         public Cave doSimulation(Cave cave)
         {
-            Boolean[,] copyMap = cave._celullarMap;
+            Cell[,] copyMap = cave._celullarMap;
 
             foreach (var seed in seeds)
             {
@@ -63,7 +63,7 @@ namespace CaveGenerator.Algorithm
                     }
                     else
                     {
-                        cave._celullarMap[seed._x, seed._y] = Utility.WALL;
+                        cave._celullarMap[seed._x, seed._y].state = Utility.STATE.Rock;
                     }
                 }
             }

@@ -8,28 +8,34 @@ namespace CaveGenerator.Model
 {
     public class Cave
     {
-        public Boolean[,] _celullarMap { get; set; }
+        public Cell[,] _celullarMap { get; set; }
 
         /// <summary>
         /// Constructor to CaveGenerator
         /// </summary>
         public Cave()
         {
-            this._celullarMap = new Boolean[Utility.WIDTH, Utility.HEIGTH];
+            this._celullarMap = new Cell[Utility.WIDTH, Utility.HEIGTH];
+
+            for (int x = 0; x < Utility.WIDTH; x++)
+            {
+                for (int y = 0; y < Utility.HEIGTH; y++)
+                {
+                    _celullarMap[x, y] = new Cell();
+                }
+            }
         }
 
         /// <summary>
         /// Create a blank map, where all fields are the same
         /// </summary>
         /// <param name="isFullOfHole">cell default value</param>
-        public void MakeBlankGrid(bool isFullOfHole)
+        public void MakeBlankGrid()
         {
-            Random random = new Random();
-
             for (int x = 0; x < Utility.WIDTH; x++)
             {
                 for (int y = 0; y < Utility.HEIGTH; y++) {
-                    this._celullarMap[x, y] = isFullOfHole;
+                    this._celullarMap[x, y].state = Utility.STATE.Air;
                 }
             }
         }
@@ -46,11 +52,11 @@ namespace CaveGenerator.Model
                 return false;
             }
 
-            if (_celullarMap[x, y] == Utility.HOLE) {
+            if (_celullarMap[x, y].state == Utility.STATE.Air) {
                 return true;
             }
 
-            if (_celullarMap[x, y] == Utility.WALL) {
+            if (_celullarMap[x, y].state == Utility.STATE.Rock) {
                 return false;
             }
             return false;
