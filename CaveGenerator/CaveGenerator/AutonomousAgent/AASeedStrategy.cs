@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CaveGenerator.AutonomousAgent
 {
+    /// <summary>
+    /// A seed is an autonomous agent that tends to go toward one direction.
+    /// </summary>
     public class AASeedStrategy : IAutonomousAgent
     {
         public int _x { get; set; }
@@ -53,28 +56,25 @@ namespace CaveGenerator.AutonomousAgent
                 if (rdm.Next(1, 100) < _lifetimeDeathChance) {
                     this._isAlive = false;
                 }
-                else{
-                    Grow();
+                else {
+                    Move();
                 }
             }
-            else{
-                Grow();
+            else {
+                Move();
             }
             _age++;
         }
 
-        void Grow()
+        void Move()
         {
-            if (rdm.Next(1, 100) < _growthChanceNorth)
-            {
+            if (rdm.Next(1, 100) < _growthChanceNorth) {
                 this._y--;
             }
-            else if (rdm.Next(1, 100) < _growthChanceWest)
-            {
+            else if (rdm.Next(1, 100) < _growthChanceWest) {
                 this._x--;
             }
-            else if (rdm.Next(1, 100) < _growthChanceEast)
-            {
+            else if (rdm.Next(1, 100) < _growthChanceEast) {
                 this._x++;
             }
         }

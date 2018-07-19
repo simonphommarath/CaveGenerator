@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CaveGenerator.AutonomousAgent
 {
+    /// <summary>
+    /// An autonomous agent is an entity that moves by itself based on it's environnement
+    /// </summary>
     interface IAutonomousAgent
     {
         int _x { get; set; }
