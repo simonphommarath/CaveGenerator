@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithm\FloorLevelStrategy.cs" />
     <Compile Include="Algorithm\GameOfLifeStrategy.cs" />
     <Compile Include="Algorithm\OpenPlatformStrategy.cs" />
     <Compile Include="Algorithm\PlantStrategy.cs" />

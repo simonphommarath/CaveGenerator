@@ -32,6 +32,7 @@ namespace CaveGenerator
             dataSource.Add( new AlgorithmDataSource() { Name = "Open Platform (L1)", Tag = "op" }); 
             dataSource.Add( new AlgorithmDataSource() { Name = "Stalag generation", Tag = "sta" });
             dataSource.Add( new AlgorithmDataSource() { Name = "Plant generation", Tag = "pla" });
+            dataSource.Add( new AlgorithmDataSource() { Name = "Floor generation", Tag = "flo" });
 
             this.algorithmComboBox.DataSource = dataSource;
             this.algorithmComboBox.DisplayMember = "Name";
@@ -113,6 +114,9 @@ namespace CaveGenerator
                     break;
                 case "pla":
                     this.SetProceduralGenStrategy(new PlantStrategy());
+                    break;
+                case "flo":
+                    this.SetProceduralGenStrategy(new FloorLevelStrategy());
                     break;
             }
             cave = algoStrategy.InitializeCave(new Cave());
