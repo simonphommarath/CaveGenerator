@@ -99,7 +99,7 @@ namespace CaveGenerator.Algorithm
                     {
                         int activeNeighbor = cave.GetSumOfCellActiveNeighbor(x, y);
 
-                        if (cave.IsActive(x, y))
+                        if (cave.IsAir(x, y))
                         {
                             if (activeNeighbor < _birthLimit)
                             {

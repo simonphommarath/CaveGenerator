@@ -13,14 +13,14 @@ namespace CaveGenerator.Algorithm
         public int _birthLimit { get; set; }
         public int _deathLimit { get; set; }
         public int _iterationCount { get; set; }
-        public int _activeChance { get; set; }
+        public int _wallChance { get; set; }
 
         public SimpleCaveStrategy()
         {
             _birthLimit = 3;
             _deathLimit = 4;
             _iterationCount = 3;
-            _activeChance = 45;
+            _wallChance = 65;
         }
 
         /// <summary>
@@ -38,10 +38,14 @@ namespace CaveGenerator.Algorithm
                 {
                     if (!cave.IsBorderCell(x, y))
                     {
-                        if (random.Next(0, 100) < this._activeChance)
+                        if (random.Next(0, 100) < this._wallChance)
                         {
-                            cave._celullarMap[x, y].state = Utility.STATE.Air;
+                            cave._celullarMap[x, y].state = Utility.STATE.Rock;
                         }
+                    }
+                    else
+                    {
+                        cave._celullarMap[x, y].state = Utility.STATE.Rock;
                     }
                 }
             }
@@ -65,7 +69,7 @@ namespace CaveGenerator.Algorithm
                     {
                         int activeNeighbor = cave.GetSumOfCellActiveNeighbor(x, y);
 
-                        if (cave.IsActive(x, y))
+                        if (cave._celullarMap[x,y].state == Utility.STATE.Air)
                         {
                             if (activeNeighbor < _birthLimit)
                             {

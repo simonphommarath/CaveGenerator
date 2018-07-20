@@ -61,7 +61,7 @@ namespace CaveGenerator
             {
                 for (int y = 0; y < Utility.HEIGTH; y++)
                 {
-                    if (!(caveCell[x, y].state == Utility.STATE.Rock)) {
+                    if (caveCell[x, y].state == Utility.STATE.Rock) {
                         activeCell = new Rectangle(x * cellSize, y * cellSize, 10, 10);
                         e.Graphics.FillRectangle(greenBrush, activeCell);
                         g.DrawRectangle(p, activeCell);

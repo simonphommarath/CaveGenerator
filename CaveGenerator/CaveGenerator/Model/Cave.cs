@@ -46,7 +46,7 @@ namespace CaveGenerator.Model
         /// <param name="x">X coordinate</param>
         /// <param name="y">Y coordinate</param>
         /// <returns>Returns true if is a wall</returns>
-        public bool IsActive(int x, int y)
+        public bool IsAir(int x, int y)
         {
             if (IsOutOfBounds(x, y)) {
                 return false;
@@ -56,9 +56,6 @@ namespace CaveGenerator.Model
                 return true;
             }
 
-            if (_celullarMap[x, y].state == Utility.STATE.Rock) {
-                return false;
-            }
             return false;
         }
 
@@ -110,12 +107,10 @@ namespace CaveGenerator.Model
             {
                 for (int dy = -1; dy <= 1; ++dy)
                 {
-                    if (!(dx == 0 && dy == 0))
+                    if (!IsOutOfBounds(x + dx, y + dy))
                     {
-                        if (IsOutOfBounds(x + dx, y + dy)) {
-                            //result++;
-                        }
-                        else if (IsActive(x + dx, y + dy)) {
+                        if (_celullarMap[x + dx, y + dy].state == Utility.STATE.Air)
+                        {
                             result++;
                         }
                     }

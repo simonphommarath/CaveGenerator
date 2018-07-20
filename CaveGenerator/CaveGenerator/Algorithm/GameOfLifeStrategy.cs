@@ -22,7 +22,7 @@ namespace CaveGenerator.Algorithm
             _birthLimit = 2;
             _deathLimit = 3;
             _iterationCount = 10;
-            _activeChance = 45;
+            _activeChance = 10;
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace CaveGenerator.Algorithm
                     {
                         if (random.Next(0, 100) < this._activeChance)
                         {
-                            cave._celullarMap[x, y].state = Utility.STATE.Air;
+                            cave._celullarMap[x, y].state = Utility.STATE.Rock;
                         }
                     }
                 }
