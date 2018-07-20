@@ -99,6 +99,7 @@ namespace CaveGenerator
 
         private void resetButton_Click(object sender, EventArgs e)
         {
+            cave.MakeBlankGrid();
             cave = algoStrategy.InitializeCave(new Cave());
             this.Canvas.Invalidate();
         }

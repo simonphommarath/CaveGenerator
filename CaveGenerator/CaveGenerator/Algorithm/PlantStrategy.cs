@@ -19,7 +19,7 @@ namespace CaveGenerator.Algorithm
 
         public PlantStrategy()
         {
-            _iterationCount = 20;
+            _iterationCount = 80;
             _floorLimit = 70;
 
             seeds = new List<AASeedStrategy>();
@@ -29,8 +29,6 @@ namespace CaveGenerator.Algorithm
 
         public Cave InitializeCave(Cave cave)
         {
-            cave.MakeBlankGrid();
-
             for (int x = 0; x < Utility.WIDTH; x++)
             {
                 for (int y = _floorLimit; y < Utility.HEIGTH; y++)

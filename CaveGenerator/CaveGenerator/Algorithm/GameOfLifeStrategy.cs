@@ -31,7 +31,6 @@ namespace CaveGenerator.Algorithm
         /// <returns>New initialized map</returns>
         public Cave InitializeCave(Cave cave)
         {
-            cave.MakeBlankGrid();
             Random random = new Random();
 
             for (int x = 0; x < Utility.WIDTH; x++)
