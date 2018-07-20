@@ -46,36 +46,53 @@ namespace CaveGenerator.AutonomousAgent
 
         public void NextAction()
         {
-            rdm = new Random(Guid.NewGuid().GetHashCode());
-
-            if (_age > _maxLifetime) {
-                this._isAlive = false;
-            }
-            else if (_age > _minLifetime && _age < _maxLifetime)
+            if (this._isAlive)
             {
-                if (rdm.Next(1, 100) < _lifetimeDeathChance) {
+                rdm = new Random(Guid.NewGuid().GetHashCode());
+
+                if (_age > _maxLifetime)
+                {
                     this._isAlive = false;
                 }
-                else {
+                else if (_age > _minLifetime && _age < _maxLifetime)
+                {
+                    if (rdm.Next(1, 100) < _lifetimeDeathChance)
+                    {
+                        this._isAlive = false;
+                    }
+                    else
+                    {
+                        Move();
+                    }
+                }
+                else
+                {
                     Move();
                 }
+                _age++;
             }
-            else {
-                Move();
-            }
-            _age++;
         }
 
         void Move()
         {
-            if (rdm.Next(1, 100) < _growthChanceNorth) {
+            if (this._age == 0)
+            {
                 this._y--;
             }
-            else if (rdm.Next(1, 100) < _growthChanceWest) {
-                this._x--;
-            }
-            else if (rdm.Next(1, 100) < _growthChanceEast) {
-                this._x++;
+            else
+            {
+                if (rdm.Next(1, 100) < _growthChanceNorth)
+                {
+                    this._y--;
+                }
+                else if (rdm.Next(1, 100) < _growthChanceWest)
+                {
+                    this._x--;
+                }
+                else if (rdm.Next(1, 100) < _growthChanceEast)
+                {
+                    this._x++;
+                }
             }
         }
     }

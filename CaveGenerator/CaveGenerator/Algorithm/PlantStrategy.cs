@@ -63,7 +63,7 @@ namespace CaveGenerator.Algorithm
                     }
                     else
                     {
-                        cave._celullarMap[seed._x, seed._y].state = Utility.STATE.Rock;
+                        cave._celullarMap[seed._x, seed._y].state = Utility.STATE.Other;
                     }
                 }
             }
