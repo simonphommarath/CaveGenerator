@@ -17,11 +17,8 @@ namespace CaveGenerator.Algorithm
         public int _upperFloorLimit { get; set; }
         public int _lowerFloorLimit { get; set; }
 
-        public int _activeChanceGround { get; set; }
-        public int _activeChanceOnCrust { get; set; }
-
-        Random random;
-
+        public double _activeChanceGround { get; set; }
+        public double _activeChanceOnCrust { get; set; }
 
         public FloorLevelStrategy()
         {
@@ -33,10 +30,8 @@ namespace CaveGenerator.Algorithm
             _birthLimit = 3;
             _deathLimit = 4;
 
-            _activeChanceGround = 10;
-            _activeChanceOnCrust = 50;
-
-            random = new Random();
+            _activeChanceGround = 0.10;
+            _activeChanceOnCrust = 0.50;
         }
 
         /// <summary>
@@ -51,7 +46,7 @@ namespace CaveGenerator.Algorithm
                 {
                     if (!cave.IsBorderCell(x, y))
                     {
-                        if (!(random.Next(1, 100) < this._activeChanceOnCrust))
+                        if (!(RandomNumberGenerator.GetRandom() < this._activeChanceOnCrust))
                         {
                             cave._celullarMap[x, y].state = Utility.STATE.Rock;
                         }
@@ -66,7 +61,7 @@ namespace CaveGenerator.Algorithm
                 {
                     if (!cave.IsBorderCell(x, y))
                     {
-                        if (!(random.Next(1, 100) < this._activeChanceGround))
+                        if (!(RandomNumberGenerator.GetRandom() < this._activeChanceGround))
                         {
                             cave._celullarMap[x, y].state = Utility.STATE.Rock;
                         }

@@ -14,7 +14,7 @@ namespace CaveGenerator.AutonomousAgent
         int _x { get; set; }
         int _y { get; set; }
 
-        int _lifetimeDeathChance { get; set; }
+        double _lifetimeDeathChance { get; set; }
         int _minLifetime { get; set; }
         int _maxLifetime { get; set; }
         int _age { get; set; }

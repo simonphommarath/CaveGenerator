@@ -15,16 +15,12 @@ namespace CaveGenerator.Algorithm
         public int _floorLimit { get; set; }
         public List<AASeedStrategy> seeds { get; set; }
 
-        Random random;
-
         public PlantStrategy()
         {
             _iterationCount = 80;
             _floorLimit = 70;
 
             seeds = new List<AASeedStrategy>();
-
-            random = new Random();
         }
 
         public Cave InitializeCave(Cave cave)
@@ -73,13 +69,20 @@ namespace CaveGenerator.Algorithm
         public void CreateSeed()
         {
             seeds = new List<AASeedStrategy>();
-            int seedNumber = random.Next(5, 10);
+
+            int seedNumber = RandomNumberGenerator.GetRandomInt(6, 10);
+
             int seedDistance = Utility.WIDTH / seedNumber;
 
             for (int i = 1; i < seedNumber; i++)
             {
-                seeds.Add(new AASeedStrategy(i * (seedDistance + random.Next(-2, 2)), _floorLimit - 1));
+                int trueDistance = 0;
+                while ((i * trueDistance <= 0 || i * trueDistance >= Utility.WIDTH)) {
+                    trueDistance = seedDistance + RandomNumberGenerator.GetRandomInt(-2, 2);
+                }
+                seeds.Add(new AASeedStrategy(i * trueDistance, _floorLimit - 1));
             }
         }
+
     }
 }

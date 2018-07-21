@@ -88,7 +88,6 @@ namespace CaveGenerator
             algoStrategy = strategy;
         }
 
-
         private void iterationButton_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < algoStrategy._iterationCount; i++) {

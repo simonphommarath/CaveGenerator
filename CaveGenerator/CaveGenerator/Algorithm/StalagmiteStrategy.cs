@@ -14,14 +14,10 @@ namespace CaveGenerator.Algorithm
 
         public int _floorLimit { get; set; }
 
-        Random random;
-
         public StalagmiteStrategy()
         {
             _iterationCount = 20;
             _floorLimit = 70;
-
-            random = new Random();
         }
 
         public Cave InitializeCave(Cave cave)

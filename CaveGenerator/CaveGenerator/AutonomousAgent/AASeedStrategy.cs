@@ -14,20 +14,18 @@ namespace CaveGenerator.AutonomousAgent
         public int _x { get; set; }
         public int _y { get; set; }
 
-        public int _growthChanceNorth { get; set; }
-        public int _growthChanceWest { get; set; }
-        public int _growthChanceEast { get; set; }
-        public int _growthChanceSouth { get; set; }
+        public double _growthChanceNorth { get; set; }
+        public double _growthChanceWest { get; set; }
+        public double _growthChanceEast { get; set; }
+        public double _growthChanceSouth { get; set; }
 
         public bool _isAlive { get; set; }
         public int _age { get; set; }
-        public int _lifetimeDeathChance { get; set; }
+        public double _lifetimeDeathChance { get; set; }
         public int _maxLifetime { get; set; }
         public int _minLifetime { get; set; }
 
-        Random rdm;
-
-        public AASeedStrategy( int x, int y, int growthChanceNorth = 50, int growthChanceWest = 25, int growthChanceEast = 25, int growthChanceSouth = 0)
+        public AASeedStrategy( int x, int y, double growthChanceNorth = 0.50, double growthChanceWest = 0.25, double growthChanceEast = 0.25, double growthChanceSouth = 0)
         {
             this._x = x;
             this._y = y;
@@ -39,7 +37,7 @@ namespace CaveGenerator.AutonomousAgent
 
             this._isAlive = true;
             this._age = 0;
-            this._lifetimeDeathChance = 5;
+            this._lifetimeDeathChance = 0.5;
             this._minLifetime = 60;
             this._maxLifetime = 160;
         }
@@ -48,15 +46,13 @@ namespace CaveGenerator.AutonomousAgent
         {
             if (this._isAlive)
             {
-                rdm = new Random(Guid.NewGuid().GetHashCode());
-
                 if (_age > _maxLifetime)
                 {
                     this._isAlive = false;
                 }
                 else if (_age > _minLifetime && _age < _maxLifetime)
                 {
-                    if (rdm.Next(1, 100) < _lifetimeDeathChance)
+                    if (RandomNumberGenerator.GetRandom() < _lifetimeDeathChance)
                     {
                         this._isAlive = false;
                     }
@@ -81,15 +77,15 @@ namespace CaveGenerator.AutonomousAgent
             }
             else
             {
-                if (rdm.Next(1, 100) < _growthChanceNorth)
+                if (RandomNumberGenerator.GetRandom() < _growthChanceNorth)
                 {
                     this._y--;
                 }
-                else if (rdm.Next(1, 100) < _growthChanceWest)
+                else if (RandomNumberGenerator.GetRandom() < _growthChanceWest)
                 {
                     this._x--;
                 }
-                else if (rdm.Next(1, 100) < _growthChanceEast)
+                else if (RandomNumberGenerator.GetRandom() < _growthChanceEast)
                 {
                     this._x++;
                 }

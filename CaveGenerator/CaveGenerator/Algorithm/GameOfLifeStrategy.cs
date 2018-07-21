@@ -15,14 +15,14 @@ namespace CaveGenerator.Algorithm
         public int _birthLimit { get; set; }
         public int _deathLimit { get; set; }
         public int _iterationCount { get; set; }
-        public int _wallChance { get; set; }
+        public double _wallChance { get; set; }
 
         public GameOfLifeStrategy()
         {
             _birthLimit = 2;
             _deathLimit = 3;
             _iterationCount = 10;
-            _wallChance = 90;
+            _wallChance = 0.90;
         }
 
         /// <summary>
@@ -31,8 +31,6 @@ namespace CaveGenerator.Algorithm
         /// <returns>New initialized map</returns>
         public Cave InitializeCave(Cave cave)
         {
-            Random random = new Random();
-
             for (int x = 0; x < Utility.WIDTH; x++)
             {
                 for (int y = 0; y < Utility.HEIGTH; y++)
@@ -42,7 +40,7 @@ namespace CaveGenerator.Algorithm
                         cave._celullarMap[x, y].state = Utility.STATE.Rock;
                     }
                     else {
-                        if (random.Next(0, 100) < this._wallChance)
+                        if (RandomNumberGenerator.GetRandom() < this._wallChance)
                         {
                             cave._celullarMap[x, y].state = Utility.STATE.Rock;
                         }
