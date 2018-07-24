@@ -1,4 +1,4 @@
-﻿namespace CaveGenerator
+﻿namespace GridDrawer
 {
     partial class Form
     {

@@ -1,6 +1,6 @@
-﻿using _2DProceduralGenerationAlgo.Model;
+﻿using _2DProceduralContentGenerator.Model;
 
-namespace _2DProceduralGenerationAlgo.Algorithm
+namespace _2DProceduralContentGenerator.Algorithm
 {
     public interface IProceduralGenStragery
     {

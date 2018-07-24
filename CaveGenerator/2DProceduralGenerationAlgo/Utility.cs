@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace _2DProceduralGenerationAlgo
+namespace _2DProceduralContentGenerator
 {
     public static class Utility
     {

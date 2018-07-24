@@ -80,9 +80,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\2DProceduralGenerationAlgo\2DProceduralGenerationAlgo.csproj">
+    <ProjectReference Include="..\2DProceduralGenerationAlgo\2DProceduralContentGenerator.csproj">
       <Project>{fa232760-ba95-46a4-8d3a-f7db7ab8f0e7}</Project>
-      <Name>2DProceduralGenerationAlgo</Name>
+      <Name>2DProceduralContentGenerator</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

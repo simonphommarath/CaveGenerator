@@ -1,11 +1,11 @@
-﻿using _2DProceduralGenerationAlgo;
-using _2DProceduralGenerationAlgo.Model;
+﻿using _2DProceduralContentGenerator;
+using _2DProceduralContentGenerator.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace CaveGenerator
+namespace GridDrawer
 {
     public partial class Form : System.Windows.Forms.Form
     {

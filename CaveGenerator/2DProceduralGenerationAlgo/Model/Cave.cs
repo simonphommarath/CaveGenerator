@@ -1,4 +1,4 @@
-﻿namespace _2DProceduralGenerationAlgo.Model
+﻿namespace _2DProceduralContentGenerator.Model
 {
     public class Cave
     {

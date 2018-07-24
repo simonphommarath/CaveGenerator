@@ -1,8 +1,8 @@
-﻿using _2DProceduralGenerationAlgo.AutonomousAgent;
-using _2DProceduralGenerationAlgo.Model;
+﻿using _2DProceduralContentGenerator.AutonomousAgent;
+using _2DProceduralContentGenerator.Model;
 using System.Collections.Generic;
 
-namespace _2DProceduralGenerationAlgo.Algorithm
+namespace _2DProceduralContentGenerator.Algorithm
 {
     public class PlantStrategy : IProceduralGenStragery
     {

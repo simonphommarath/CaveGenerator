@@ -1,7 +1,7 @@
-﻿using _2DProceduralGenerationAlgo.Algorithm;
-using _2DProceduralGenerationAlgo.Model;
+﻿using _2DProceduralContentGenerator.Algorithm;
+using _2DProceduralContentGenerator.Model;
 
-namespace _2DProceduralGenerationAlgo
+namespace _2DProceduralContentGenerator
 {
     public class ProceduralContentGenerator
     {

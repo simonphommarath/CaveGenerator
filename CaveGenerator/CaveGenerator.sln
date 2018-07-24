@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaveGenerator", "CaveGenerator\CaveGenerator.csproj", "{77C97C9E-320A-4897-9CAE-CEC3DB87D8E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2DGridDrawer", "CaveGenerator\2DGridDrawer.csproj", "{77C97C9E-320A-4897-9CAE-CEC3DB87D8E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2DProceduralGenerationAlgo", "2DProceduralGenerationAlgo\2DProceduralGenerationAlgo.csproj", "{FA232760-BA95-46A4-8D3A-F7DB7AB8F0E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2DProceduralContentGenerator", "2DProceduralGenerationAlgo\2DProceduralContentGenerator.csproj", "{FA232760-BA95-46A4-8D3A-F7DB7AB8F0E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

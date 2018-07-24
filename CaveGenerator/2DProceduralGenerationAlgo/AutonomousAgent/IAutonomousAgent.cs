@@ -1,4 +1,4 @@
-﻿namespace _2DProceduralGenerationAlgo.AutonomousAgent
+﻿namespace _2DProceduralContentGenerator.AutonomousAgent
 {
     /// <summary>
     /// An autonomous agent is an entity that moves by itself based on it's environnement

@@ -1,4 +1,4 @@
-﻿namespace _2DProceduralGenerationAlgo.AutonomousAgent
+﻿namespace _2DProceduralContentGenerator.AutonomousAgent
 {
     /// <summary>
     /// A seed is an autonomous agent that tends to go toward one direction.

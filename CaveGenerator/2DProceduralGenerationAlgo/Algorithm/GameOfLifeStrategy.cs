@@ -1,7 +1,7 @@
-﻿using _2DProceduralGenerationAlgo.Model;
-using static _2DProceduralGenerationAlgo.Utility;
+﻿using _2DProceduralContentGenerator.Model;
+using static _2DProceduralContentGenerator.Utility;
 
-namespace _2DProceduralGenerationAlgo.Algorithm
+namespace _2DProceduralContentGenerator.Algorithm
 {
     class GameOfLifeStrategy : IProceduralGenStragery
     {

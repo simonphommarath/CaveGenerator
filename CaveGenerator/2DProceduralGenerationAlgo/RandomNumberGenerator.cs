@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _2DProceduralGenerationAlgo
+namespace _2DProceduralContentGenerator
 {
     public static class RandomNumberGenerator
     {
