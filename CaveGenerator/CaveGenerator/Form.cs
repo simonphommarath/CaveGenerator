@@ -9,13 +9,13 @@ namespace CaveGenerator
 {
     public partial class Form : System.Windows.Forms.Form
     {
-        ProceduralContentGenerator generator;
+        private ProceduralContentGenerator generator;
 
         public Form()
         {
-            generator = new ProceduralContentGenerator();
             InitializeComponent();
 
+            generator = new ProceduralContentGenerator();
             var dataSource = new List<AlgorithmDataSource>();
 
             dataSource.Add( new AlgorithmDataSource() { Name = "Simple Cave", Tag = "sc" });
