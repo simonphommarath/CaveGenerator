@@ -5,7 +5,7 @@ namespace _2DProceduralGenerationAlgo
 {
     public class ProceduralContentGenerator
     {
-        public Cave cave { get; set; }
+        public Cave cave { get; private set; }
 
         private IProceduralGenStragery algoStrategy;
 

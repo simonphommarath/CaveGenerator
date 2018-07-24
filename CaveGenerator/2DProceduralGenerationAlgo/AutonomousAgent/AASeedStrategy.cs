@@ -63,7 +63,7 @@
             }
         }
 
-        void Move()
+        private void Move()
         {
             if (this._age == 0)
             {
