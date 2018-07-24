@@ -1,28 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CaveGenerator;
-using CaveGenerator.Model;
-using static CaveGenerator.Utility;
+﻿using _2DProceduralGenerationAlgo.Model;
 
-namespace CaveGenerator.Algorithm
+namespace _2DProceduralGenerationAlgo.Algorithm
 {
-    class GameOfLifeStrategy : IProceduralGenStragery
+    class SimpleCaveStrategy : IProceduralGenStragery
     {
-
         public int _birthLimit { get; set; }
         public int _deathLimit { get; set; }
         public int _iterationCount { get; set; }
         public double _wallChance { get; set; }
 
-        public GameOfLifeStrategy()
+        public SimpleCaveStrategy()
         {
-            _birthLimit = 2;
-            _deathLimit = 3;
-            _iterationCount = 10;
-            _wallChance = 0.90;
+            _birthLimit = 3;
+            _deathLimit = 4;
+            _iterationCount = 3;
+            _wallChance = 0.65;
         }
 
         /// <summary>
@@ -35,15 +27,16 @@ namespace CaveGenerator.Algorithm
             {
                 for (int y = 0; y < Utility.HEIGTH; y++)
                 {
-                    if (cave.IsBorderCell(x, y))
+                    if (!cave.IsBorderCell(x, y))
                     {
-                        cave._celullarMap[x, y].state = Utility.STATE.Rock;
-                    }
-                    else {
                         if (RandomNumberGenerator.GetRandom() < this._wallChance)
                         {
                             cave._celullarMap[x, y].state = Utility.STATE.Rock;
                         }
+                    }
+                    else
+                    {
+                        cave._celullarMap[x, y].state = Utility.STATE.Rock;
                     }
                 }
             }
@@ -67,30 +60,20 @@ namespace CaveGenerator.Algorithm
                     {
                         int activeNeighbor = cave.GetSumOfCellActiveNeighbor(x, y);
 
-                        if (copyMap[x, y].state == STATE.Air)
+                        if (cave._celullarMap[x,y].state == Utility.STATE.Air)
                         {
                             if (activeNeighbor < _birthLimit)
                             {
-                                // Underpopulation
-                                copyMap[x, y].state = STATE.Rock;
-                            }
-                            else if (activeNeighbor == _birthLimit || activeNeighbor == _deathLimit)
-                            {
-                                // Reproduction
-                                copyMap[x, y].state = STATE.Air;
-                            }
-                            else
-                            {
-                                // Overpopulation
-                                copyMap[x, y].state = STATE.Rock;
+                                // Fill the holes
+                                copyMap[x, y].state = Utility.STATE.Rock;
                             }
                         }
                         else
                         {
-                            if (activeNeighbor == _deathLimit)
+                            if (activeNeighbor > _deathLimit)
                             {
-                                // Reproduction
-                                copyMap[x, y].state = STATE.Air;
+                                // Destroy small walls
+                                copyMap[x, y].state = Utility.STATE.Air;
                             }
                         }
                     }

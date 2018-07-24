@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CaveGenerator.Model;
+﻿using _2DProceduralGenerationAlgo.Model;
 
-namespace CaveGenerator.Algorithm
+namespace _2DProceduralGenerationAlgo.Algorithm
 {
     /// <summary>
     /// Experimental algorithm
