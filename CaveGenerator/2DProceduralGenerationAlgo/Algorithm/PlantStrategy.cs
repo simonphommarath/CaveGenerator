@@ -1,12 +1,8 @@
-﻿using System;
+﻿using _2DProceduralGenerationAlgo.AutonomousAgent;
+using _2DProceduralGenerationAlgo.Model;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CaveGenerator.Model;
-using CaveGenerator.AutonomousAgent;
 
-namespace CaveGenerator.Algorithm
+namespace _2DProceduralGenerationAlgo.Algorithm
 {
     public class PlantStrategy : IProceduralGenStragery
     {

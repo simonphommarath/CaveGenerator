@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CaveGenerator.Model
+namespace _2DProceduralGenerationAlgo.Model
 {
     public class Cell
     {

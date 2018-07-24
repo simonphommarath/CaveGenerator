@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace CaveGenerator
+namespace _2DProceduralGenerationAlgo
 {
     public static class RandomNumberGenerator
     {
         static int seed = Environment.TickCount;
 
-        static readonly ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random(Interlocked.Increment(ref seed)));
+        static readonly Random random = new Random();
 
         public static double GetRandom()
         {
@@ -19,7 +14,7 @@ namespace CaveGenerator
 
             // we dont want no 0
             while(value == 0) {
-                value = random.Value.NextDouble();
+                value = random.NextDouble();
             }
 
             return value;
@@ -27,7 +22,7 @@ namespace CaveGenerator
 
         public static int GetRandomInt(int min, int max)
         {
-            return random.Value.Next(min, max);
+            return random.Next(min, max);
         }
     }
 }

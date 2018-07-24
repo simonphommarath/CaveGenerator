@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CaveGenerator.AutonomousAgent
+﻿namespace _2DProceduralGenerationAlgo.AutonomousAgent
 {
     /// <summary>
     /// A seed is an autonomous agent that tends to go toward one direction.

@@ -1,26 +1,32 @@
-﻿using CaveGenerator;
-using CaveGenerator.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using _2DProceduralGenerationAlgo.Model;
 
-namespace CaveGenerator.Algorithm
+namespace _2DProceduralGenerationAlgo.Algorithm
 {
-    class SimpleCaveStrategy : IProceduralGenStragery
+    class FloorLevelStrategy : IProceduralGenStragery
     {
+        public int _iterationCount { get; set; }
+
         public int _birthLimit { get; set; }
         public int _deathLimit { get; set; }
-        public int _iterationCount { get; set; }
-        public double _wallChance { get; set; }
 
-        public SimpleCaveStrategy()
+        public int _upperFloorLimit { get; set; }
+        public int _lowerFloorLimit { get; set; }
+
+        public double _activeChanceGround { get; set; }
+        public double _activeChanceOnCrust { get; set; }
+
+        public FloorLevelStrategy()
         {
+            _iterationCount = 3;
+
+            _lowerFloorLimit = 70;
+            _upperFloorLimit = 65;
+
             _birthLimit = 3;
             _deathLimit = 4;
-            _iterationCount = 3;
-            _wallChance = 0.65;
+
+            _activeChanceGround = 0.10;
+            _activeChanceOnCrust = 0.50;
         }
 
         /// <summary>
@@ -31,11 +37,11 @@ namespace CaveGenerator.Algorithm
         {
             for (int x = 0; x < Utility.WIDTH; x++)
             {
-                for (int y = 0; y < Utility.HEIGTH; y++)
+                for (int y = _upperFloorLimit; y < _lowerFloorLimit; y++)
                 {
                     if (!cave.IsBorderCell(x, y))
                     {
-                        if (RandomNumberGenerator.GetRandom() < this._wallChance)
+                        if (!(RandomNumberGenerator.GetRandom() < this._activeChanceOnCrust))
                         {
                             cave._celullarMap[x, y].state = Utility.STATE.Rock;
                         }
@@ -43,6 +49,21 @@ namespace CaveGenerator.Algorithm
                     else
                     {
                         cave._celullarMap[x, y].state = Utility.STATE.Rock;
+                    }
+                }
+
+                for (int y = _lowerFloorLimit; y < Utility.HEIGTH; y++)
+                {
+                    if (!cave.IsBorderCell(x, y))
+                    {
+                        if (!(RandomNumberGenerator.GetRandom() < this._activeChanceGround))
+                        {
+                            cave._celullarMap[x, y].state = Utility.STATE.Rock;
+                        }
+                    }
+                    else
+                    {
+                            cave._celullarMap[x, y].state = Utility.STATE.Rock;
                     }
                 }
             }
@@ -60,13 +81,13 @@ namespace CaveGenerator.Algorithm
 
             for (int x = 0; x < Utility.WIDTH; x++)
             {
-                for (int y = 0; y < Utility.HEIGTH; y++)
+                for (int y = _upperFloorLimit; y < Utility.HEIGTH; y++)
                 {
                     if (!cave.IsBorderCell(x, y))
                     {
                         int activeNeighbor = cave.GetSumOfCellActiveNeighbor(x, y);
 
-                        if (cave._celullarMap[x,y].state == Utility.STATE.Air)
+                        if (cave.IsAir(x, y))
                         {
                             if (activeNeighbor < _birthLimit)
                             {
@@ -85,6 +106,7 @@ namespace CaveGenerator.Algorithm
                     }
                 }
             }
+
             cave._celullarMap = copyMap;
             return cave;
         }
