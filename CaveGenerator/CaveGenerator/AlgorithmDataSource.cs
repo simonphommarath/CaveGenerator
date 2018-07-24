@@ -1,4 +1,4 @@
-﻿namespace _2DProceduralContentGenerator.Model
+﻿namespace _2DGridDrawer
 {
     public class AlgorithmDataSource
     {

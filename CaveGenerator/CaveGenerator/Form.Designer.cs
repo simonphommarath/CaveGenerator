@@ -1,4 +1,4 @@
-﻿namespace GridDrawer
+﻿namespace _2DGridDrawer
 {
     partial class Form
     {

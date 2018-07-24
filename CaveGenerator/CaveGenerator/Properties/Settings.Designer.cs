@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GridDrawer.Properties
+namespace _2DGridDrawer.Properties
 {
 
 

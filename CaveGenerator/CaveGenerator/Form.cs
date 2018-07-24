@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace GridDrawer
+namespace _2DGridDrawer
 {
     public partial class Form : System.Windows.Forms.Form
     {

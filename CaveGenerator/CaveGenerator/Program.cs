@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GridDrawer
+namespace _2DGridDrawer
 {
     static class Program
     {
