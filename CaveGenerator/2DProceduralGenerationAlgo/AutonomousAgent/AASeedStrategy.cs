@@ -46,7 +46,7 @@
                 }
                 else if (_age > _minLifetime && _age < _maxLifetime)
                 {
-                    if (RandomNumberGenerator.GetRandom() < _lifetimeDeathChance)
+                    if (CustomRandomNumberGenerator.GetRandom() < _lifetimeDeathChance)
                     {
                         this._isAlive = false;
                     }
@@ -71,15 +71,15 @@
             }
             else
             {
-                if (RandomNumberGenerator.GetRandom() < _growthChanceNorth)
+                if (CustomRandomNumberGenerator.GetRandom() < _growthChanceNorth)
                 {
                     this._y--;
                 }
-                else if (RandomNumberGenerator.GetRandom() < _growthChanceWest)
+                else if (CustomRandomNumberGenerator.GetRandom() < _growthChanceWest)
                 {
                     this._x--;
                 }
-                else if (RandomNumberGenerator.GetRandom() < _growthChanceEast)
+                else if (CustomRandomNumberGenerator.GetRandom() < _growthChanceEast)
                 {
                     this._x++;
                 }

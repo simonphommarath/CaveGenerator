@@ -2,7 +2,7 @@
 
 namespace _2DProceduralContentGenerator
 {
-    public static class RandomNumberGenerator
+    public static class CustomRandomNumberGenerator
     {
         static int seed = Environment.TickCount;
 

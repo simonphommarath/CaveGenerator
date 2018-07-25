@@ -46,6 +46,7 @@
     <Compile Include="Algorithm\SimpleCaveStrategy.cs" />
     <Compile Include="Algorithm\StalagmiteStrategy.cs" />
     <Compile Include="AutonomousAgent\AASeedStrategy.cs" />
+    <Compile Include="AutonomousAgent\AAStalagStrategy.cs" />
     <Compile Include="AutonomousAgent\IAutonomousAgent.cs" />
     <Compile Include="Model\Cave.cs" />
     <Compile Include="Model\Cell.cs" />

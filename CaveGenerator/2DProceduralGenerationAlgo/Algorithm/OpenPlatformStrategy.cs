@@ -35,7 +35,7 @@ namespace _2DProceduralContentGenerator.Algorithm
                 for (int y = 0; y < Utility.HEIGTH; y++)
                 {
                     if (!cave.IsBorderCell(x, y)){
-                        if (!(RandomNumberGenerator.GetRandom() < this._activeChanceOnAir)) {
+                        if (!(CustomRandomNumberGenerator.GetRandom() < this._activeChanceOnAir)) {
                             cave._celullarMap[x, y].state = Utility.STATE.Rock;
                         }
                     }
@@ -63,14 +63,14 @@ namespace _2DProceduralContentGenerator.Algorithm
                     if(!cave.IsBorderCell(x, y)) {
                         if (cave._celullarMap[x, y].state == Utility.STATE.Rock)
                         {
-                            if (RandomNumberGenerator.GetRandom() < this._growthHorizontalChance) {
+                            if (CustomRandomNumberGenerator.GetRandom() < this._growthHorizontalChance) {
 
                                 copyMap[x - 1, y].state = Utility.STATE.Rock;
                             }
-                            if (RandomNumberGenerator.GetRandom() < this._growthHorizontalChance) {
+                            if (CustomRandomNumberGenerator.GetRandom() < this._growthHorizontalChance) {
                                 copyMap[x + 1, y].state = Utility.STATE.Rock;
                             }
-                            if (RandomNumberGenerator.GetRandom() < this._growthVerticalChance){
+                            if (CustomRandomNumberGenerator.GetRandom() < this._growthVerticalChance){
                                 copyMap[x, y + 1].state = Utility.STATE.Rock;
                             }
                         }

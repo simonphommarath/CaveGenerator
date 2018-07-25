@@ -12,6 +12,7 @@
         int _minLifetime { get; set; }
         int _maxLifetime { get; set; }
         int _age { get; set; }
+        bool _isAlive { get; set; }
 
         void NextAction();
     }

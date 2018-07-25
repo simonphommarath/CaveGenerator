@@ -29,7 +29,7 @@ namespace _2DProceduralContentGenerator.Algorithm
                 {
                     if (!cave.IsBorderCell(x, y))
                     {
-                        if (RandomNumberGenerator.GetRandom() < this._wallChance)
+                        if (CustomRandomNumberGenerator.GetRandom() < this._wallChance)
                         {
                             cave._celullarMap[x, y].state = Utility.STATE.Rock;
                         }

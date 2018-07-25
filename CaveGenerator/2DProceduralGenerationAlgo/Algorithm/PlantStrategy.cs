@@ -62,11 +62,11 @@ namespace _2DProceduralContentGenerator.Algorithm
             return cave;
         }
 
-        public void CreateSeed()
+        private void CreateSeed()
         {
             seeds = new List<AASeedStrategy>();
 
-            int seedNumber = RandomNumberGenerator.GetRandomInt(6, 10);
+            int seedNumber = CustomRandomNumberGenerator.GetRandomInt(6, 10);
 
             int seedDistance = Utility.WIDTH / seedNumber;
 
@@ -74,7 +74,7 @@ namespace _2DProceduralContentGenerator.Algorithm
             {
                 int trueDistance = 0;
                 while ((i * trueDistance <= 0 || i * trueDistance >= Utility.WIDTH)) {
-                    trueDistance = seedDistance + RandomNumberGenerator.GetRandomInt(-2, 2);
+                    trueDistance = seedDistance + CustomRandomNumberGenerator.GetRandomInt(-2, 2);
                 }
                 seeds.Add(new AASeedStrategy(i * trueDistance, _floorLimit - 1));
             }

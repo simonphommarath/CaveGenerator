@@ -34,7 +34,7 @@ namespace _2DProceduralContentGenerator.Algorithm
                         cave._celullarMap[x, y].state = Utility.STATE.Rock;
                     }
                     else {
-                        if (RandomNumberGenerator.GetRandom() < this._wallChance)
+                        if (CustomRandomNumberGenerator.GetRandom() < this._wallChance)
                         {
                             cave._celullarMap[x, y].state = Utility.STATE.Rock;
                         }

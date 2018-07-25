@@ -16,6 +16,14 @@ namespace _2DProceduralContentGenerator
         public const int WIDTH = 130;
         public const int HEIGTH = 75;
 
+        public enum DIRECTION
+        {
+            Left,
+            Right,
+            Up,
+            Down
+        }
+
         /// <summary>
         /// Print grid in text file (temp)
         /// </summary>
