@@ -112,5 +112,43 @@
             }
             return result;
         }
+
+        /// <summary>
+        /// Get total number of rock on the map
+        /// </summary>
+        /// <returns></returns>
+        public int GetWallTotal()
+        {
+            int total = 0;
+            for (int x = 0; x < Utility.WIDTH; x++)
+            {
+                for (int y = 0; y < Utility.HEIGTH; y++)
+                {
+                    if (this._celullarMap[x,y].state == Utility.STATE.Rock)
+                    {
+                        total++;
+                    }
+                }
+            }
+            return total;
+        }
+
+        /// <summary>
+        /// Get total cell number on map
+        /// </summary>
+        /// <returns></returns>
+        public int GetCellTotal()
+        {
+            return Utility.HEIGTH * Utility.WIDTH;
+        }
+
+        /// <summary>
+        /// Return the rock to cell ratio
+        /// </summary>
+        /// <returns></returns>
+        public double GetWallRatio()
+        {
+            return GetWallTotal() / GetCellTotal();
+        }
     }
 }
