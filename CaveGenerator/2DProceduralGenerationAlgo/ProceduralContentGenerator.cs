@@ -1,5 +1,6 @@
 ﻿using _2DProceduralContentGenerator.Algorithm;
 using _2DProceduralContentGenerator.Model;
+using _2DProceduralGenerationAlgo.Algorithm;
 
 namespace _2DProceduralContentGenerator
 {
@@ -41,6 +42,9 @@ namespace _2DProceduralContentGenerator
                     break;
                 case "flo":
                     this.SetProceduralGenStrategy(new FloorLevelStrategy());
+                    break;
+                case "con":
+                    this.SetProceduralGenStrategy(new ConnectedCaveStrategy());
                     break;
             }
             cave = algoStrategy.InitializeCave(new Cave());

@@ -24,6 +24,7 @@ namespace _2DGridDrawer
             dataSource.Add( new AlgorithmDataSource() { Name = "Stalag generation", Tag = "sta" });
             dataSource.Add( new AlgorithmDataSource() { Name = "Plant generation", Tag = "pla" });
             dataSource.Add( new AlgorithmDataSource() { Name = "Floor generation", Tag = "flo" });
+            dataSource.Add( new AlgorithmDataSource() { Name = "Connected Cave", Tag = "con" });
 
             this.algorithmComboBox.DataSource = dataSource;
             this.algorithmComboBox.DisplayMember = "Name";
