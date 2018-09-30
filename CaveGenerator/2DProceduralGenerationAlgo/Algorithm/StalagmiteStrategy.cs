@@ -81,6 +81,5 @@ namespace _2DProceduralContentGenerator.Algorithm
                 upStalag.Add(new AAStalagStrategy(i * trueDistance, _floorLimit - 1));
             }
         }
-
     }
 }

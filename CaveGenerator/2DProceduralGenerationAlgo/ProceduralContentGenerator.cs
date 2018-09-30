@@ -43,8 +43,8 @@ namespace _2DProceduralContentGenerator
                 case "flo":
                     this.SetProceduralGenStrategy(new FloorLevelStrategy());
                     break;
-                case "con":
-                    this.SetProceduralGenStrategy(new ConnectedCaveStrategy());
+                case "rwalk":
+                    this.SetProceduralGenStrategy(new RandomWalkStrategy());
                     break;
             }
             cave = algoStrategy.InitializeCave(new Cave());

@@ -21,10 +21,10 @@ namespace _2DGridDrawer
             dataSource.Add( new AlgorithmDataSource() { Name = "Simple Cave", Tag = "sc" });
             dataSource.Add( new AlgorithmDataSource() { Name = "Game of life", Tag = "gol" }); 
             dataSource.Add( new AlgorithmDataSource() { Name = "Open Platform (L1)", Tag = "op" }); 
-            dataSource.Add( new AlgorithmDataSource() { Name = "Stalag generation", Tag = "sta" });
-            dataSource.Add( new AlgorithmDataSource() { Name = "Plant generation", Tag = "pla" });
-            dataSource.Add( new AlgorithmDataSource() { Name = "Floor generation", Tag = "flo" });
-            dataSource.Add( new AlgorithmDataSource() { Name = "Connected Cave", Tag = "con" });
+            dataSource.Add( new AlgorithmDataSource() { Name = "Stalag gen", Tag = "sta" });
+            dataSource.Add( new AlgorithmDataSource() { Name = "Plant gen", Tag = "pla" });
+            dataSource.Add( new AlgorithmDataSource() { Name = "Floor gen", Tag = "flo" });
+            dataSource.Add( new AlgorithmDataSource() { Name = "Rand. walk gen", Tag = "rwalk" });
 
             this.algorithmComboBox.DataSource = dataSource;
             this.algorithmComboBox.DisplayMember = "Name";
